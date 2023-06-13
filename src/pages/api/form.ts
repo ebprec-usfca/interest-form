@@ -5,7 +5,7 @@ export type FormPayload = {
   email: string;
   language: string;
   referralSources: string[];
-  interests: string[];
+  //interests: string[];
 };
 
 
