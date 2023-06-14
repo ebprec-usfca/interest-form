@@ -15,6 +15,7 @@ export default function handler(
 ){
   if (req.method === 'POST') {
     let payload = req.body as FormPayload;
+    console.log(payload);
     // send email
      
     // update spreadsheet
