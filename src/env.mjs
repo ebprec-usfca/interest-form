@@ -8,6 +8,8 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
+    EMAIL_ADDR: z.string().email(),
+    EMAIL_PASS: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -26,6 +28,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    EMAIL_ADDR: process.env.EMAIL_ADDR,
+    EMAIL_PASS: process.env.EMAIL_PASS,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
