@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { type interest, emails  } from "~/components/Constants";
 
 export type FormPayload = {
   name: string;
   email: string;
   language: string;
-  referralSources: string[];
-  //interests: string[];
+  referralSource: string;
+  interests: interest[];
 };
 
 
@@ -24,8 +25,4 @@ export default function handler(
   } else {
     res.status(405).end(); // Method Not Allowed
   }
-}
-
-// messages here
-const messages = {
 }

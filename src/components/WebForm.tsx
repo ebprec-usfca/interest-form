@@ -1,11 +1,11 @@
 import React from 'react';
-import { languages, interests, referralSources } from './Constants';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { languages, interests, referralSources, interest } from './Constants';
 
 import * as Yup from 'yup';
 
-import { type WithResponseProps } from '../pages/index';
 import { type FormPayload } from '../pages/api/form';
+import { type WithResponseProps } from '../pages/index';
 
 type FormData = {
   name: string;
@@ -51,7 +51,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
              email: '',
              language: '',
              referralSource: '',
-             interests: [] as string[],
+             interests: [] as interest[],
            } as FormData}
            validationSchema={validationSchema}
            onSubmit={handleSubmit}
@@ -60,9 +60,11 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
              // handle checkbox change
              function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
                const checked = e.target.checked;
+               const newInterest = e.target.id as interest;
+
                let newInterests = checked
-                 ? [...values.interests, e.target.value]
-                 : values.interests.filter((interest) => interest !== e.target.value);
+                 ? [...values.interests, newInterest]
+                 : values.interests.filter((key) => key !== newInterest);
     
                setFieldValue('interests', newInterests);
              }
@@ -141,17 +143,17 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                  <div className="mb-4">
                    <p className="mb-1 text-lg">How can we help?</p>
                    <ErrorMessage name="interests" component="div" className={errorClass} />
-                   {interests.map((interest) => (
-                     <label htmlFor={interest} className="flex items-center mb-2" key={interest}>
+                   {Object.keys(interests).map((key) => (
+                     <label htmlFor={key} className="flex items-center mb-2" key={key}>
                        <Field
                          type="checkbox"
-                         id={interest}
+                         id={key}
                          name="interests"
-                         value={interest}
+                         value={key}
                          className="mr-2"
                          onChange={handleCheckboxChange}
                        />
-                       {interest}
+                       {interests[key as interest]}
                      </label>
                    ))}
                  </div>
