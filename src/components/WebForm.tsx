@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaSpinner } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { languages, interests, referralSources, interest, referralSource } from './Constants';
 
@@ -25,10 +26,14 @@ const validationSchema = Yup.object({
 });
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
   // handle form submission. This is where we will make our POST request to the server
   const handleSubmit = async (values: FormData) => {
     const payload = JSON.stringify(values as FormPayload);
 
+    // set loading 
+    setIsLoading(true);
     let res = await fetch('/api/form', {
       method: 'POST',
       headers: {
@@ -36,6 +41,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
       },
       body: payload,
     })
+    setIsLoading(false);
   
     // update response state (ok -> thank you, !ok -> error)
     setResponse(res.ok);
@@ -163,7 +169,11 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                      type="submit"
                      className="w-full max-w-md px-3 py-4 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
                    >
-                     Submit
+                     {isLoading ? (
+                       <FaSpinner className="animate-spin mx-auto" />
+                     ) : (
+                       'Submit'
+                     )}
                    </button>
                  </div>
                </Form>
