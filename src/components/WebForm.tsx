@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { languages, interests, referralSources, interest } from './Constants';
+import { languages, interests, referralSources, interest, referralSource } from './Constants';
 
 import * as Yup from 'yup';
 
@@ -11,8 +11,8 @@ type FormData = {
   name: string;
   email: string;
   language: string;
-  referralSource: string;
-  interests: string[];
+  referralSource: referralSource | '';
+  interests: interest[];
 };
 
 // schema for Yup validation on form submission
@@ -25,10 +25,9 @@ const validationSchema = Yup.object({
 });
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
-
   // handle form submission. This is where we will make our POST request to the server
   const handleSubmit = async (values: FormData) => {
-    const payload = JSON.stringify(values);
+    const payload = JSON.stringify(values as FormPayload);
 
     let res = await fetch('/api/form', {
       method: 'POST',
@@ -132,8 +131,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                      }`}
                    >
                      <option value="">Select source</option>
-                     {referralSources.map((source) => (
-                       <option key={source} value={source}>{source}</option>
+                     {Object.keys(referralSources).map((key) => (
+                       <option key={key} value={key}>{referralSources[key as referralSource]}</option>
                      ))}
                    </Field>
                    <ErrorMessage name="referralSource" component="div" className={errorClass} />

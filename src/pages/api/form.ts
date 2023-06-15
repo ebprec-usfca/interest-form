@@ -1,13 +1,14 @@
 import nodemailer from 'nodemailer';
 import { env } from "~/env.mjs";
 import { NextApiRequest, NextApiResponse } from "next";
-import { type interest as interestType, emails, emailSubject, emailGreeting, interests } from "~/components/Constants";
+import type { referralSource as referralSourceType, interest as interestType } from "~/components/Constants";
+import { emails, emailSubject, emailGreeting, interests } from "~/components/Constants";
 
 export type FormPayload = {
   name: string;
   email: string;
   language: string;
-  referralSource: string;
+  referralSource: referralSourceType;
   interests: interestType[];
 };
 

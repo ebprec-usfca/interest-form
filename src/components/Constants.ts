@@ -12,15 +12,33 @@ export const languages = [
   'Arabic',
 ]
 
-export const referralSources = [
-  'At my doorstep',
-  'At an event',
-  'Flyer/Poster',
-  'Social Medial Post',
-  'Referred by another organization',
-  'Referred by family or friend',
-  'Walked into 94th Ave Resource Center',
- ]
+export type referralSource = 'doorstep' |
+  'event' |
+  'flyer' |
+  'social_media' |
+  'referred_by_org' |
+  'referred_by_friend' |
+  'walked_in'
+
+export const referralSources: {[key in referralSource]: string} = {
+  doorstep: 'At my doorstep',
+  event: 'At an event',
+  flyer: 'Flyer/Poster',
+  social_media: 'Social Medial Post',
+  referred_by_org: 'Referred by another organization',
+  referred_by_friend: 'Referred by family or friend',
+  walked_in: 'Walked into 94th Ave Resource Center',
+ }
+
+ export const spreadsheetIDs: {[key in referralSource]: string} = {
+   doorstep: 'TODO',
+   event: 'TODO',
+   flyer: 'TODO',
+   social_media: 'TODO',
+   referred_by_org: 'TODO',
+   referred_by_friend: 'TODO',
+   walked_in: 'TODO',
+ }
 
 export type interest = 'find_housing' | 
   'protect_housing' |
