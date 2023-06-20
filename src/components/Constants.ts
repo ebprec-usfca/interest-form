@@ -1,3 +1,6 @@
+import { investorEmail } from "./emails/investor"
+import { orientationEmail } from "./emails/orientation"
+
 export const languages = [
   'English',
   'Spanish',
@@ -40,47 +43,57 @@ export const referralSources: {[key in referralSource]: string} = {
    walked_in: 'TODO',
  }
 
-export type interest = 'find_housing' | 
-  'protect_housing' |
-  'resident_rights' |
-  'volunteering' |
-  'land_trusts' |
-  'cooperative' |
-  'selling' |
-  'adu' |
-  'merchants_assc' |
-  'skill_development' |
-  'better_neighborhoods'
+export type Interest = 
+| 'orientation'
+| 'investor'
+| 'group_buy'
+| 'land_trusts'
+| 'affordable_housing'
+| 'tenant_rights'
+| 'evictions'
+| 'adu'
+| 'building_org'
+| 'neighbors'
+| 'merchants_assc'
+| 'volunteering'
 
-export const interests: {[key in interest]: string} = {
-  find_housing: 'Finding affordable housing',
-  protect_housing: 'Protecting or improving your existing housing',
-  resident_rights: 'Receiving trainings/information on tenants\'/homeowners\' rights, eviction defense or foreclosure prevention',
-  volunteering: 'Community Organizing or Volunteering in East/Deep East Oakland',
-  land_trusts: 'Learning about community land trusts, cooperatives',
-  cooperative: 'Joining a cooperative to purchase a building together and build community wealth',
-  selling: 'Selling your property without causing more displacement',
-  adu: 'Building an ADU (accessory dwelling unit) on your property',
+export const InterestGrouping = {
+  'Permanently Affordable Homeownership': ['orientation', 'investor', 'group_buy', 'land_trusts'] as Interest[],
+  'Housing': ['affordable_housing', 'tenant_rights', 'evictions', 'adu', 'building_org'] as Interest[],
+  'Better Neighborhoods, Same Neighbors': ['neighbors', 'merchants_assc'] as Interest[],
+  'Organizing/Volunteering': ['volunteering'] as Interest[],
+}
+
+export const interestText: {[key in Interest]: string} = {
+  // Permanently Affordable Homeownership
+  orientation: 'Attending an Orientation to EB PREC to join the movement',
+  investor: 'Becoming a Community or Investor Owner of EB PREC',
+  group_buy: 'Forming a group to purchase a building together w/ EB PREC',
+  land_trusts: 'Learning about Community Land Trusts',
+  // Housing
+  affordable_housing: 'Finding Affordable Housing',
+  tenant_rights: 'Receiving trainings/information on tenants\'/homeowners\' rights, eviction defense or foreclosure prevention',
+  evictions: 'Getting direct support for an eviction or foreclosure',
+  adu: 'Building an ADU on my property or legalizing an unpermitted ADU',
+  building_org: 'Organizing my building to improve conditions or secure our housing (tenants association)',
+  // Better Neighborhoods, Same Neighbors
+  neighbors: 'Learning more about the Better Neighborhoods, Same Neighbors resources',
   merchants_assc: 'Joining a Merchants\' Association for East Oakland businesses (business owners only)',
-  skill_development: 'Career/Skill or Small Business Development',
-  better_neighborhoods: 'Learning more about the Better Neighborhoods, Same Neighbors resources',
+  // Organizing/Volunteering 
+  volunteering: 'Community Organizing or Volunteering in East/Deep East Oakland',
 }
 
-export const emails: {[key in interest]: string} = {
-  find_housing: '',
-  protect_housing: '',
-  resident_rights: '',
-  volunteering: '',
-  land_trusts: '',
-  cooperative: '',
-  selling: '',
-  adu: '',
-  merchants_assc: '',
-  skill_development: '',
-  better_neighborhoods: '',
-}
-
-export const emailSubject = (interest: string) => 'Resources for ' + interest;
-export const emailGreeting = (name: string) => {
-  return `Hello ${name},\n\nWe are so glad you reached out to us, hopefully these resources will be helpful to you! Here are the resources you requested:\n\n`
+export const emails: {[key in Interest]: (name: string) => string} = {
+  orientation: orientationEmail,
+  investor: investorEmail,
+  group_buy: (_: string) => 'TODO',
+  land_trusts: (_: string) => 'TODO',
+  affordable_housing: (_: string) => 'TODO',
+  tenant_rights: (_: string) => 'TODO',
+  evictions: (_: string) => 'TODO',
+  adu: (_: string) => 'TODO',
+  building_org: (_: string) => 'TODO',
+  neighbors: (_: string) => 'TODO',
+  merchants_assc: (_: string) => 'TODO',
+  volunteering: (_: string) => 'TODO',
 }
