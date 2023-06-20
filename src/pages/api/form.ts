@@ -27,11 +27,14 @@ export default async function handler(
     console.log('received payload', req.body);
 
     // send email(s)
-    sendEmails(payload);
+    const emailPromise = sendEmails(payload);
 
     // update spreadsheet
-    updateSpreadsheet(payload);
+    const spreadsheetPromise = updateSpreadsheet(payload);
      
+    // wait for both to finish
+    await Promise.all([emailPromise, spreadsheetPromise]);
+
     res.status(200).end();
   } else {
     res.status(405).end(); // Method Not Allowed
