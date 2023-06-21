@@ -78,8 +78,7 @@ function getRowData(payload: FormPayload): string[] {
     has('volunteering'),                                                                    // AF: BNSN (4.a)	
     has('volunteering'),                                                                    // AG: Policy (4.b)	
     has('volunteering'),                                                                    // AH: TAs (4.c)	
-    
-    `${payload.contactMethod}\n${payload.notes}`, // 	AI: Notes	
+    `${payload.contactMethod}\n${payload.notes || ""}`, // 	AI: Notes	
     referralSources[payload.referralSource],      // 	AJ: How you find us?	
     'No',                                         // 	AK: Have we asked/recieved feedback
   ]

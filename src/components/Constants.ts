@@ -58,8 +58,9 @@ export type Interest =
 | 'volunteering'
 
 export const InterestGrouping = {
+  'Urgent Needs': ['evictions'] as Interest[],
   'Permanently Affordable Homeownership': ['orientation', 'investor', 'group_buy', 'land_trusts'] as Interest[],
-  'Housing': ['affordable_housing', 'tenant_rights', 'evictions', 'adu', 'building_org'] as Interest[],
+  'Housing': ['affordable_housing', 'tenant_rights', 'adu', 'building_org'] as Interest[],
   'Better Neighborhoods, Same Neighbors': ['neighbors', 'merchants_assc'] as Interest[],
   'Organizing/Volunteering': ['volunteering'] as Interest[],
 }
@@ -73,7 +74,7 @@ export const interestText: {[key in Interest]: string} = {
   // Housing
   affordable_housing: 'Finding Affordable Housing',
   tenant_rights: 'Receiving trainings/information on tenants\'/homeowners\' rights, eviction defense or foreclosure prevention',
-  evictions: 'Getting direct support for an eviction or foreclosure',
+  evictions: 'I am in danger of losing my housing (through eviction, foreclosure, or other means)',
   adu: 'Building an ADU on my property or legalizing an unpermitted ADU',
   building_org: 'Organizing my building to improve conditions or secure our housing (tenants association)',
   // Better Neighborhoods, Same Neighbors
