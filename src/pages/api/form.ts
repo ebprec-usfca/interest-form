@@ -15,6 +15,7 @@ export type FormPayload = {
   language: string;
   referralSource: referralSourceType;
   interests: interestType[];
+  notes: string;
 };
 
 

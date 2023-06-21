@@ -4,7 +4,7 @@ import { JWT } from 'google-auth-library';
 import { env } from '~/env.mjs';
 import { type FormPayload } from './form';
 
-import { InterestGrouping, type Interest } from '~/components/Constants';
+import { referralSources, InterestGrouping, type Interest } from '~/components/Constants';
 
 const client = new JWT({
   email: env.SHEETS_CLIENT_EMAIL,
@@ -79,8 +79,8 @@ function getRowData(payload: FormPayload): string[] {
     has('volunteering'),                                                                    // AG: Policy (4.b)	
     has('volunteering'),                                                                    // AH: TAs (4.c)	
     
-    payload.contactMethod,  // 	AI: Notes	
-    '',                     // 	AJ: How you find us?	
-    'No',                   // 	AK: Have we asked/recieved feedback
+    `${payload.contactMethod}\n${payload.notes}`, // 	AI: Notes	
+    referralSources[payload.referralSource],      // 	AJ: How you find us?	
+    'No',                                         // 	AK: Have we asked/recieved feedback
   ]
 }
