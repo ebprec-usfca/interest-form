@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 
 const ThankYou: React.FC = () => {
   return (
@@ -10,8 +11,16 @@ const ThankYou: React.FC = () => {
       </Head>
       <main className="flex min-h-screen bg-gray-100 items-center justify-center">
         <div className="bg-white p-10 rounded-lg shadow-lg">
-          <h1 className="text-4xl font-bold mb-6 text-center">Thank you!</h1>
-          <p className="text-xl text-center">
+          <div className='flex flex-col items-center justify-end'>
+            <Image
+              src="/logo.png"
+              alt="Map showing service region of Downtown Oakland."
+              width={200}
+              height={100}
+            />
+            <h1 className="text-2xl font-bold mb-4 text-center">Thank You!</h1>
+          </div>
+          <p className="text-center">
             Your interest form has been submitted successfully. We will be in touch shortly regarding next steps!
           </p>
         </div>

@@ -98,3 +98,6 @@ export const emails: {[key in Interest]: (name: string) => string} = {
   merchants_assc: (_: string) => 'TODO',
   volunteering: (_: string) => 'TODO',
 }
+
+  export type zipCode = '94621' | '94603' | '94602' | 'Other'
+  export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']

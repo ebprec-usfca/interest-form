@@ -48,15 +48,15 @@ function getRowData(payload: FormPayload): string[] {
     
     payload.language,   // Preferred language	
     
-    payload.zip,                      // Zip Code/Neighborhood	
-    payload.inRegion ? "Yes" : "No",  // Y/N (Live in the project area)
+    payload.zip == 'Other' ? payload.otherZip : payload.zip,  // Zip Code/Neighborhood	
+    payload.inRegion,                                         // Y/N (Live in the project area)
     
     '',  // Event Name	
     '',  // Date	
     '',  // Time	
     
     'No',                                                                                   // L:  Completed Contact Intake	
-    'No',                                                                                   // M:  Become Community Owner of EBPREC	
+    payload.communityOwner,                                                                 // M:  Become Community Owner of EBPREC	
     has(...InterestGrouping['Permanently Affordable Homeownership'], 'affordable_housing'), // N:  EB PREC Orientation (1)	
     has('investor'),                                                                        // O:  CO/IO (1.a)	
     has('group_buy'),                                                                       // P:  Owner Groups (1.b)		

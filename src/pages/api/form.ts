@@ -9,9 +9,10 @@ export type FormPayload = {
   email: string;
   phone: string;
   zip: string;
+  otherZip: string;
   contactMethod: 'phone' | 'email';
-  communityOwner: boolean;
-  inRegion: boolean;
+  communityOwner: 'Yes' | 'No';
+  inRegion: 'Yes' | 'No';
   language: string;
   referralSource: referralSourceType;
   interests: interestType[];

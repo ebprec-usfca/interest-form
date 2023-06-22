@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource } from './Constants';
+import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes } from './Constants';
 
 import * as Yup from 'yup';
 
@@ -14,13 +14,13 @@ type FormData = {
   lastName: string;
   email: string;
   language: string;
-  referralSource: referralSource | '';
+  referralSource: referralSource | undefined;
   interests: Interest[];
   phone: string;
   zip: string;
-  contactMethod: 'phone' | 'email';
-  communityOwner: boolean;
-  inRegion: boolean;
+  contactMethod: 'phone' | 'email' | undefined;
+  communityOwner: 'Yes' | 'No' | undefined;
+  inRegion: 'Yes' | 'No' | undefined;
   notes: string;
 };
 
@@ -32,10 +32,19 @@ const validationSchema = Yup.object({
   language: Yup.string().required('Language is required'),
   referralSource: Yup.string().required('Referral source is required'),
   interests: Yup.array().min(1, 'At least one interest is required'),
-  phone: Yup.string().required('Phone number is required'),
-  zip: Yup.string().required('Zip code is required'),
+  phone: Yup.string()
+    .required('Phone number is required')
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, 'Must be exactly 10 digits')
+    .max(10, 'Must be exactly 10 digits'),
+  zip: Yup.string()
+    .required('Zip code is required'),
+  otherZip: Yup.string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(5, 'Must be exactly 5 digits')
+    .max(5, 'Must be exactly 5 digits'),
   contactMethod: Yup.string().required('Contact method is required'),
-  communityOwner: Yup.boolean().required('Community ownership specification is required'),
+  communityOwner: Yup.string().required('Community ownership specification is required'),
   inRegion: Yup.boolean().required('Please specify if you are in the region'),
 });
 
@@ -70,7 +79,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
           width={200}
           height={100}
         />
-        <h1 className="text-2xl font-bold mb-4">Displacement Resource Request Form</h1>
+        <h1 className="text-xl font-bold mb-4 text-center md:text-2xl">Displacement Resource Request Form</h1>
       </div>
         {/* Name */}
         <Formik
@@ -78,9 +87,15 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             firstName: '',
             lastName: '',
             email: '',
+            phone: '',
+            zip: '',
+            contactMethod: undefined,
+            communityOwner: undefined,
+            inRegion: undefined,
             language: '',
-            referralSource: '',
+            referralSource: undefined,
             interests: [] as Interest[],
+            notes: '',
           } as FormData}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -161,15 +176,33 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                 {/* Zip Code */}
                 <div className="mb-4">
                   <label htmlFor="zip" className="block mb-1 text-lg">Zip Code:</label>
-                  <Field
-                    type="text"
-                    id="zip"
-                    name="zip"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
-                      errors.zip && touched.zip ? errorClass : ''
-                    }`}
-                  />
+                  <div className="flex gap-4">
+                    <Field
+                      as="select"
+                      id="zip"
+                      name="zip"
+                      className={`px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
+                        errors.zip && touched.zip ? errorClass : ''
+                      }`}
+                    >
+                      <option value="">Select a Zip Code</option>
+                      {zipCodes.map((zip) => (
+                        <option key={zip} value={zip}>{zip}</option>
+                        ))}
+                    </Field> 
+                    {values.zip === "Other" && (
+                      <Field
+                        type="text"
+                        id="otherZip"
+                        name="otherZip"
+                        className={`w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
+                          errors.zip && touched.zip ? errorClass : ''
+                        }`}
+                      />
+                    )}
+                  </div>
                   <ErrorMessage name="zip" component="div" className={errorClass} />
+                  <ErrorMessage name="otherZip" component="div" className={errorClass} />
                 </div>
     
                 {/* Contact Method */}
@@ -221,8 +254,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                     }`}
                   >
                     <option value="">Make your selection</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                   </Field>
                   <ErrorMessage name="communityOwner" component="div" className={errorClass} />
                 </div>
@@ -247,8 +280,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                     }`}
                   >
                     <option value="">Make your selection</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                   </Field>
                   <ErrorMessage name="inRegion" component="div" className={errorClass} />
                 </div>
