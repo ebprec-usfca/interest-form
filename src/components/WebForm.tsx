@@ -45,7 +45,7 @@ const validationSchema = Yup.object({
     .max(5, 'Must be exactly 5 digits'),
   contactMethod: Yup.string().required('Contact method is required'),
   communityOwner: Yup.string().required('Community ownership specification is required'),
-  inRegion: Yup.boolean().required('Please specify if you are in the region'),
+  inRegion: Yup.string().required('Please specify if you are in the region'),
 });
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
