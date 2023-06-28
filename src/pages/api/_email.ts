@@ -32,8 +32,18 @@ export default async function sendEmails(payload: FormPayload) {
     });
   });
 
+  let i = -1;
+  let emailPromises = new Array<Promise<void>>(payload.interests.length);
   for(let interest of payload.interests) {
-    await sendEmail(payload.email, `${payload.firstName} ${payload.lastName}`, interest);
+    const p = sendEmail(payload.email, `${payload.firstName} ${payload.lastName}`, interest);
+    emailPromises[++i] = p;
+  }
+
+  try {
+    await Promise.all(emailPromises);
+    console.log('Emails sent');
+  } catch(err) {
+    console.error('Emails failed:', err);
   }
 }
 
@@ -53,7 +63,6 @@ async function sendEmail(email: string, name: string, interest: Interest) {
         console.error(err);
         reject(err);
       } else {
-        console.log(info);
         resolve(info);
       }
     });

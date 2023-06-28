@@ -15,17 +15,22 @@ const client = new JWT({
 const sheets = google.sheets({ version: 'v4', auth: client });
 
 export default async function updateSpreadsheet(payload: FormPayload) {
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: env.SPREADSHEET_ID,
-    range: 'A1:AK1',
-    insertDataOption: 'INSERT_ROWS',
-    valueInputOption: 'USER_ENTERED',
-    requestBody: {
-      values: [
-        getRowData(payload),
-      ],
-    },
-  });
+  try {
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: env.SPREADSHEET_ID,
+      range: 'A1:AK1',
+      insertDataOption: 'INSERT_ROWS',
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [
+          getRowData(payload),
+        ],
+      },
+    });
+    console.log('Spreadsheet updated');
+  } catch(err) {
+    console.error('Spreadsheet update failed:', err);
+  }
 }
 
 // get the row data from the payload
