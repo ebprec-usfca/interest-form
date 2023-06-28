@@ -48,7 +48,7 @@ function getRowData(payload: FormPayload): string[] {
     
     payload.language,   // Preferred language	
     
-    payload.zip == 'Other' ? payload.otherZip : payload.zip,  // Zip Code/Neighborhood	
+    payload.zip,  // Zip Code/Neighborhood	
     payload.inRegion,                                         // Y/N (Live in the project area)
     
     '',  // Event Name	
