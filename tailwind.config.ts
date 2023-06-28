@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         primary: "#eb661e",
+        background: "#ffd261",
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
