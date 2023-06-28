@@ -58,7 +58,6 @@ export type Interest =
 | 'volunteering'
 
 export const InterestGrouping = {
-  'Urgent Needs': ['evictions'] as Interest[],
   'Permanently Affordable Homeownership': ['orientation', 'investor', 'groupBuy', 'landTrusts'] as Interest[],
   'Housing': ['affordableHousing', 'tenantRights', 'adu', 'buildingOrg'] as Interest[],
   'Better Neighborhoods, Same Neighbors': ['neighbors', 'merchantsAssc'] as Interest[],
@@ -74,12 +73,12 @@ export const interestText: {[key in Interest]: string} = {
   // Housing
   affordableHousing: 'Finding Affordable Housing',
   tenantRights: 'Receiving trainings/information on tenants\'/homeowners\' rights, eviction defense or foreclosure prevention',
-  evictions: 'I am in danger of losing my housing (through eviction, foreclosure, or other means)',
+  evictions: 'Those in danger of losing housing (through eviction, foreclosure, or other means)',
   adu: 'Building an ADU on my property or legalizing an unpermitted ADU',
   buildingOrg: 'Organizing my building to improve conditions or secure our housing (tenants association)',
   // Better Neighborhoods, Same Neighbors
   neighbors: 'Learning more about the Better Neighborhoods, Same Neighbors resources',
-  merchantsAssc: 'Joining a Merchants\' Association for East Oakland businesses (business owners only)',
+  merchantsAssc: 'Joining a Small Business Alliance for East Oakland businesses (business owners only)',
   // Organizing/Volunteering 
   volunteering: 'Community Organizing or Volunteering in East/Deep East Oakland',
 }

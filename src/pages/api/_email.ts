@@ -40,7 +40,7 @@ export default async function sendEmails(payload: FormPayload) {
 async function sendEmail(email: string, name: string, interest: Interest) {
   // Send the email
   const mailData = {
-    from: 'Here2Stay',
+    from: `DAP@EBPREC<${env.EMAIL_ADDR}>`,
     to: email,
     subject: 'Resources for ' + interestText[interest],
     html: emails[interest](name),

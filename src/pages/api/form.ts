@@ -9,7 +9,6 @@ export type FormPayload = {
   email: string;
   phone: string;
   zip: string;
-  otherZip: string;
   contactMethod: 'phone' | 'email';
   communityOwner: 'Yes' | 'No';
   inRegion: 'Yes' | 'No';

@@ -18,6 +18,8 @@ type FormData = {
   interests: Interest[];
   phone: string;
   zip: string;
+  otherZip: string;
+  urgent: 'Yes' | 'No' | undefined;
   contactMethod: 'phone' | 'email' | undefined;
   communityOwner: 'Yes' | 'No' | undefined;
   inRegion: 'Yes' | 'No' | undefined;
@@ -40,12 +42,17 @@ const validationSchema = Yup.object({
   zip: Yup.string()
     .required('Zip code is required'),
   otherZip: Yup.string()
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .min(5, 'Must be exactly 5 digits')
-    .max(5, 'Must be exactly 5 digits'),
+    .when('zip', {
+      is: (zip: string) => zip === 'Other',
+      then: (schema) => schema.required('Zip code is required')
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .length(5, 'Must be exactly 5 digits'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   contactMethod: Yup.string().required('Contact method is required'),
   communityOwner: Yup.string().required('Community ownership specification is required'),
   inRegion: Yup.string().required('Please specify if you are in the region'),
+  urgent: Yup.string().required('Please specify if you have urgent needs'),
 });
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
@@ -53,7 +60,21 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
   // handle form submission. This is where we will make our POST request to the server
   const handleSubmit = async (values: FormData) => {
-    const payload = JSON.stringify(values as FormPayload);
+    const payload: FormPayload = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      language: values.language,
+      referralSource: values.referralSource!,
+      interests: values.urgent === 'Yes' ? values.interests.concat('evictions') : values.interests, 
+      phone: values.phone,
+      zip: values.zip === "Other" ? values.otherZip : values.zip,
+      contactMethod: values.contactMethod!,
+      communityOwner: values.communityOwner!,
+      inRegion: values.inRegion!,
+      notes: values.notes,
+    }
+    const payloadJSON = JSON.stringify(payload);
 
     // set loading 
     setIsLoading(true);
@@ -62,7 +83,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: payload,
+      body: payloadJSON,
     })
     setIsLoading(false);
   
@@ -72,14 +93,14 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
   return (
     <div className="bg-white border border-gray-300 rounded shadow max-w-[800px] p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 min-h-screen sm:min-h-0">
-      <div className='flex flex-col items-center justify-end md:flex-row-reverse md:items-baseline md:gap-10'>
+      <div className='flex flex-col items-center justify-end md:flex-row-reverse md:items-baseline md:gap-10 md:justify-between'>
         <Image
           src="/logo.png"
           alt="Map showing service region of Downtown Oakland."
           width={200}
           height={100}
         />
-        <h1 className="text-xl font-bold mb-4 text-center md:text-2xl">Displacement Resource Request Form</h1>
+        <h1 className="text-primary text-xl font-heading mb-4 text-center md:text-2xl">East Oakland is #Here2Stay</h1>
       </div>
         {/* Name */}
         <Formik
@@ -105,7 +126,6 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
               const checked = e.target.checked;
               const newInterest = e.target.id as Interest;
-              console.log(checked, newInterest)
 
               let newInterests = checked
                 ? [...values.interests, newInterest]
@@ -203,6 +223,24 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   </div>
                   <ErrorMessage name="zip" component="div" className={errorClass} />
                   <ErrorMessage name="otherZip" component="div" className={errorClass} />
+                </div>
+
+                {/* Urgent Needs */}
+                <div className="mb-4">
+                  <label htmlFor="urgent" className="block mb-1 text-lg">Are you at risk of losing your home or business in Deep East Oakland?</label>
+                  <Field
+                    as="select"
+                    id="urgent"
+                    name="urgent"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
+                      errors.urgent && touched.urgent ? errorClass : ''
+                    }`}
+                  >
+                    <option value="">Make your selection</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </Field>
+                  <ErrorMessage name="urgent" component="div" className={errorClass} />
                 </div>
     
                 {/* Contact Method */}
@@ -311,7 +349,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   <ErrorMessage name="interests" component="div" className={errorClass} />
                   {Object.entries(InterestGrouping).map(([key, arr]) => (
                     <>
-                      <h3 key={key} className="text-lg font-bold">{key}</h3>
+                      <h3 key={key} className="text-xl text-primary font-heading">{key}</h3>
                       {arr.map((interest) => (
                         <label htmlFor={interest} className="flex items-center mb-2" key={interest}>
                           <Field
@@ -319,7 +357,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                             id={interest}
                             name="interests"
                             value={interest}
-                            className="mr-2"
+                            className="mr-2 w-[13px] h-[13px]"
                             onChange={handleCheckboxChange}
                           />
                           {interestText[interest]}
@@ -344,7 +382,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="w-full max-w-md px-3 py-4 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
+                    className="w-full max-w-md px-3 py-4 mt-4 text-white bg-primary rounded focus:outline-none"
                   >
                     {isLoading ? (
                       <FaSpinner className="animate-spin mx-auto" />
