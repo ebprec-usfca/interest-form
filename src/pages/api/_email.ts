@@ -52,7 +52,7 @@ async function sendEmail(email: string, name: string, interest: Interest) {
   const mailData = {
     from: `DAP@EBPREC<${env.EMAIL_ADDR}>`,
     to: email,
-    subject: 'Resources for ' + interestText[interest],
+    subject: 'Following Up About: ' + interestText[interest],
     html: emails[interest](name),
   };
 
