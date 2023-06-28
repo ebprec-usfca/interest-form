@@ -11,6 +11,9 @@ export type WithResponseProps = {
 };
 
 const Home: NextPage = () => {
+  // null -> form has not been submitted
+  // true -> form has been submitted successfully
+  // false -> form has been submitted unsuccessfully
   const [response, setResponse] = useState<boolean | null>(null);
 
   return (

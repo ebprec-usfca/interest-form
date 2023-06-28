@@ -33,11 +33,11 @@ const ErrorComponent: React.FC<WithResponseProps> = ({ setResponse }) => {
               width={200}
               height={100}
             />
-            <h1 className="text-xl font-bold mb-4 text-center">Oh no! Something went wrong</h1>
+            <h1 className="text-2xl font-heading text-primary mb-4 text-center">Oh no! Something went wrong</h1>
           </div>
           <p className="text-gray-600 mb-4 text-center">Please try submitting the form again, or come back later!</p>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block mx-auto"
+            className="bg-primary text-white font-bold py-2 px-4 rounded block mx-auto"
             onClick={handleClose}
           >
             Close
