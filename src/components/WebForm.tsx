@@ -382,7 +382,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                 <div className="flex justify-center items-center">
                   <button
                     type="submit"
-                    className="w-full max-w-md px-3 py-4 mt-4 text-white bg-primary rounded focus:outline-none"
+                    className="w-full max-w-md px-3 py-4 mt-4 text-white bg-primary rounded-lg focus:outline-none"
                   >
                     {isLoading ? (
                       <FaSpinner className="animate-spin mx-auto" />
