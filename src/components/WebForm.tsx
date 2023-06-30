@@ -1,12 +1,12 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes } from './Constants';
+import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes } from '~/constants/Constants';
 
 import * as Yup from 'yup';
 
-import { type FormPayload } from '../pages/api/form';
-import { type WithResponseProps } from '../pages/index';
+import { type FormPayload } from '~/pages/api/form';
+import { type WithResponseProps } from '~/pages/index';
 import Image from 'next/image';
 
 type FormData = {
@@ -66,7 +66,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
       email: values.email,
       language: values.language,
       referralSource: values.referralSource!,
-      interests: values.urgent === 'Yes' ? values.interests.concat('evictions') : values.interests, 
+      interests: values.urgent === 'Yes' ? ['evictions' as Interest].concat(values.interests) : values.interests, 
       phone: values.phone,
       zip: values.zip === "Other" ? values.otherZip : values.zip,
       contactMethod: values.contactMethod!,

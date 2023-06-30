@@ -2,9 +2,9 @@ import { google } from 'googleapis';
 import { JWT } from 'google-auth-library';
 
 import { env } from '~/env.mjs';
-import { type FormPayload } from './form';
+import { type FormPayload } from '~/pages/api/form';
 
-import { referralSources, InterestGrouping, type Interest } from '~/components/Constants';
+import { referralSources, InterestGrouping, type Interest } from '~/constants/Constants';
 
 const client = new JWT({
   email: env.SHEETS_CLIENT_EMAIL,

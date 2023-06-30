@@ -7,7 +7,6 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url(),
     EMAIL_ADDR: z.string().email(),
     EMAIL_PASS: z.string(),
     SHEETS_CLIENT_EMAIL: z.string(),
@@ -30,7 +29,6 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
     EMAIL_ADDR: process.env.EMAIL_ADDR,
     EMAIL_PASS: process.env.EMAIL_PASS,
     SHEETS_CLIENT_EMAIL: process.env.SHEETS_CLIENT_EMAIL,

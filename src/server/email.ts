@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 
 import { env } from "~/env.mjs";
-import { FormPayload } from './form';
-import { emails, interestText, type Interest } from "~/components/Constants";
+import { FormPayload } from '~/pages/api/form';
+import { emailIntro, emailOutro, emails } from '~/constants/Email';
 
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
@@ -32,28 +32,27 @@ export default async function sendEmails(payload: FormPayload) {
     });
   });
 
-  let i = -1;
-  let emailPromises = new Array<Promise<void>>(payload.interests.length);
-  for(let interest of payload.interests) {
-    const p = sendEmail(payload.email, `${payload.firstName} ${payload.lastName}`, interest);
-    emailPromises[++i] = p;
-  }
+
+  let body = emailIntro(`${payload.firstName} ${payload.lastName}`)
+  body += payload.interests.map(interest => emails[interest])
+    .concat(emailOutro)
+    .join('');
 
   try {
-    await Promise.all(emailPromises);
+    await sendEmail(payload.email, body);
     console.log('Emails sent');
   } catch(err) {
     console.error('Emails failed:', err);
   }
 }
 
-async function sendEmail(email: string, name: string, interest: Interest) {
+async function sendEmail(email: string, body: string) {
   // Send the email
   const mailData = {
     from: `DAP@EBPREC<${env.EMAIL_ADDR}>`,
     to: email,
-    subject: 'Following Up About: ' + interestText[interest],
-    html: emails[interest](name),
+    subject: 'EB PREC: Following Up',
+    html: body,
   };
 
   await new Promise((resolve, reject) => {

@@ -1,16 +1,3 @@
-import { aduEmail } from "./emails/adu"
-import { investorEmail } from "./emails/investor"
-import { groupBuyEmail } from "./emails/group_buy"
-import { evictionsEmail } from "./emails/evictions"
-import { neighborsEmail } from "./emails/neighbors"
-import { landTrustsEmail } from "./emails/land_trusts"
-import { orientationEmail } from "./emails/orientation"
-import { buildingsOrgEmail } from "./emails/buildings_org"
-import { tenantRightsEmail } from "./emails/tenant_rights"
-import { affordableHousingEmail } from "./emails/affordable_housing"
-import { volunteeringEmail } from "./emails/volunteering"
-import { merchantsAsscEmail } from "./emails/merchants_assc"
-
 export const languages = [
   'English',
   'Spanish',
@@ -81,21 +68,6 @@ export const interestText: {[key in Interest]: string} = {
   merchantsAssc: 'Joining a Small Business Alliance for East Oakland businesses (business owners only)',
   // Organizing/Volunteering 
   volunteering: 'Community Organizing or Volunteering in East/Deep East Oakland',
-}
-
-export const emails: {[key in Interest]: (name: string) => string} = {
-  orientation: orientationEmail,
-  investor: investorEmail,
-  groupBuy: groupBuyEmail,
-  landTrusts: landTrustsEmail,
-  affordableHousing: affordableHousingEmail,
-  tenantRights: tenantRightsEmail,
-  evictions: evictionsEmail,
-  adu: aduEmail,
-  buildingOrg: buildingsOrgEmail,
-  neighbors: neighborsEmail,
-  merchantsAssc: merchantsAsscEmail,
-  volunteering: volunteeringEmail,
 }
 
 export type zipCode = '94621' | '94603' | '94602' | 'Other'

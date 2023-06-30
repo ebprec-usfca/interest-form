@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import type { referralSource as referralSourceType, Interest as interestType } from "~/components/Constants";
-import sendEmails from './_email';
-import updateSpreadsheet from "./_spreadsheet";
+import type { referralSource as referralSourceType, Interest as interestType } from "~/constants/Constants";
+import sendEmails from '~/server/email';
+import updateSpreadsheet from "~/server/spreadsheet";
 
 export type FormPayload = {
   firstName: string;
