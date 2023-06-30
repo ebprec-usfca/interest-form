@@ -4,7 +4,7 @@ import { JWT } from 'google-auth-library';
 import { env } from '~/env.mjs';
 import { type FormPayload } from '~/pages/api/form';
 
-import { referralSources, InterestGrouping, type Interest } from '~/constants/Constants';
+import { sheetIDs, referralSources, InterestGrouping, type Interest } from '~/constants/Constants';
 
 const client = new JWT({
   email: env.SHEETS_CLIENT_EMAIL,
@@ -17,7 +17,7 @@ const sheets = google.sheets({ version: 'v4', auth: client });
 export default async function updateSpreadsheet(payload: FormPayload) {
   try {
     await sheets.spreadsheets.values.append({
-      spreadsheetId: env.SPREADSHEET_ID,
+      spreadsheetId: sheetIDs[payload.referralSource],
       range: 'A1:AK1',
       insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'USER_ENTERED',

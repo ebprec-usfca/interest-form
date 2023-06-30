@@ -72,3 +72,18 @@ export const interestText: {[key in Interest]: string} = {
 
 export type zipCode = '94621' | '94603' | '94602' | 'Other'
 export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']
+
+/**
+ * sheets maps referral sources to the google sheets ID they should write data to
+ */
+export const sheetIDs: {[src in referralSource]: string} = {
+  doorstep: '1y8gf1aVuBTiHEqEdiIhZ_1pKlygbOA6rBn_miFkctGA',
+  event: '1y8gf1aVuBTiHEqEdiIhZ_1pKlygbOA6rBn_miFkctGA',
+
+  flyer: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
+  social_media: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
+  referred_by_org: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
+
+  referred_by_friend: '1Bh9YxLXhlCc6gTmk5uAn_El_2ObHMKvlZifD059HwGo',
+  walked_in: '1Bh9YxLXhlCc6gTmk5uAn_El_2ObHMKvlZifD059HwGo',
+}

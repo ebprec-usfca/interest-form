@@ -11,7 +11,6 @@ export const env = createEnv({
     EMAIL_PASS: z.string(),
     SHEETS_CLIENT_EMAIL: z.string(),
     EMAIL_PRIVATE_KEY: z.string(),
-    SPREADSHEET_ID: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -33,7 +32,6 @@ export const env = createEnv({
     EMAIL_PASS: process.env.EMAIL_PASS,
     SHEETS_CLIENT_EMAIL: process.env.SHEETS_CLIENT_EMAIL,
     EMAIL_PRIVATE_KEY: process.env.EMAIL_PRIVATE_KEY,
-    SPREADSHEET_ID: process.env.SPREADSHEET_ID,
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
