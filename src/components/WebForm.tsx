@@ -100,7 +100,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
           width={200}
           height={100}
         />
-        <h1 className="text-primary text-xl font-heading mb-4 text-center md:text-2xl">East Oakland is #Here2Stay</h1>
+        <h1 className="text-primary text-3xl font-heading mb-4 text-center md:text-4xl">East Oakland is #Here2Stay</h1>
       </div>
         {/* Name */}
         <Formik

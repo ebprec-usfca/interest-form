@@ -18,7 +18,7 @@ export default async function updateSpreadsheet(payload: FormPayload) {
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetIDs[payload.referralSource],
-      range: 'A1:AK1',
+      range: 'A1:AL1',
       insertDataOption: 'INSERT_ROWS',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
@@ -44,6 +44,8 @@ function getRowData(payload: FormPayload): string[] {
     return 'No';
   }
 
+  const now = new Date();
+
   return [
     has('evictions'),   // A: Urgent/ Emergency Need	
     payload.firstName,  // First Name	
@@ -53,12 +55,12 @@ function getRowData(payload: FormPayload): string[] {
     
     payload.language,   // Preferred language	
     
-    payload.zip,  // Zip Code/Neighborhood	
-    payload.inRegion,                                         // Y/N (Live in the project area)
+    payload.zip,      // Zip Code/Neighborhood	
+    payload.inRegion, // Y/N (Live in the project area)
     
     '',  // Event Name	
-    '',  // Date	
-    '',  // Time	
+    now.toLocaleDateString(),  // Date	
+    now.toLocaleTimeString(),  // Time	
     
     'No',                                                                                   // L:  Completed Contact Intake	
     payload.communityOwner,                                                                 // M:  Become Community Owner of EBPREC	
@@ -83,8 +85,9 @@ function getRowData(payload: FormPayload): string[] {
     has('volunteering'),                                                                    // AF: BNSN (4.a)	
     has('volunteering'),                                                                    // AG: Policy (4.b)	
     has('volunteering'),                                                                    // AH: TAs (4.c)	
-    `${payload.contactMethod}\n${payload.notes || ""}`, // 	AI: Notes	
+    payload.notes,                                // 	AI: Notes	
     referralSources[payload.referralSource],      // 	AJ: How you find us?	
     'No',                                         // 	AK: Have we asked/recieved feedback
+    payload.contactMethod,                        // 	AL: Contact Method
   ]
 }
