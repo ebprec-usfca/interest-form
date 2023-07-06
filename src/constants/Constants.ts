@@ -1,3 +1,5 @@
+import { env } from "~/env.mjs"
+
 export const languages = [
   'English',
   'Spanish',
@@ -77,13 +79,13 @@ export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']
  * sheets maps referral sources to the google sheets ID they should write data to
  */
 export const sheetIDs: {[src in referralSource]: string} = {
-  doorstep: '1y8gf1aVuBTiHEqEdiIhZ_1pKlygbOA6rBn_miFkctGA',
-  event: '1y8gf1aVuBTiHEqEdiIhZ_1pKlygbOA6rBn_miFkctGA',
+  doorstep: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  event: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 
-  flyer: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
-  social_media: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
-  referred_by_org: '15uBRTgRDNABV8BUUpQ3YpjO0ykIYzskRouESrEO34uU',
+  flyer: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  social_media: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  referred_by_org: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 
-  referred_by_friend: '1Bh9YxLXhlCc6gTmk5uAn_El_2ObHMKvlZifD059HwGo',
-  walked_in: '1Bh9YxLXhlCc6gTmk5uAn_El_2ObHMKvlZifD059HwGo',
+  referred_by_friend: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  walked_in: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 }
