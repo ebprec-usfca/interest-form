@@ -60,7 +60,7 @@ function getRowData(payload: FormPayload): string[] {
     
     '',  // Event Name	
     now.toLocaleDateString(),  // Date	
-    now.toLocaleTimeString(),  // Time	
+    now.toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles'}),  // Time
     
     'No',                                                                                   // L:  Completed Contact Intake	
     payload.communityOwner,                                                                 // M:  Become Community Owner of EBPREC	
