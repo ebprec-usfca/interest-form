@@ -48,46 +48,46 @@ function getRowData(payload: FormPayload): string[] {
 
   return [
     has('evictions'),   // A: Urgent/ Emergency Need	
-    payload.firstName,  // First Name	
-    payload.lastName,   // Last Name	
-    payload.phone,      // Phone #	
-    payload.email,      // Email	
+    payload.firstName,  // B: First Name	
+    payload.lastName,   // C: Last Name	
+    payload.phone,      // D: Phone #	
+    payload.email,      // E: Email	
     
-    payload.language,   // Preferred language	
+    payload.contactMethod,  // F: Preferred contact method
+    payload.language,       // G: Preferred language	
     
-    payload.zip,      // Zip Code/Neighborhood	
-    payload.inRegion, // Y/N (Live in the project area)
+    payload.zip,      // H: Zip Code/Neighborhood	
+    payload.inRegion, // I: Y/N (Live in the project area)
     
-    '',  // Event Name	
-    now.toLocaleDateString(),  // Date	
-    now.toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles'}),  // Time
+    '',  // J: Event Name	
+    now.toLocaleDateString(),  // K: Date	
+    now.toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles'}),  // L: Time
     
-    'No',                                                                                   // L:  Completed Contact Intake	
-    payload.communityOwner,                                                                 // M:  Become Community Owner of EBPREC	
-    has(...InterestGrouping['Permanently Affordable Homeownership'], 'affordableHousing'), // N:  EB PREC Orientation (1)	
-    has('investor'),                                                                        // O:  CO/IO (1.a)	
-    has('groupBuy'),                                                                       // P:  Owner Groups (1.b)		
-    has('groupBuy'),                                                                       // Q:  Acquisitions (1.c)		
-    has('landTrusts'),                                                                     // R:  CLT Education (1.d)	
-    has(...InterestGrouping.Housing),                                                       // S:  Housing (2)	
-    has('tenantRights', 'evictions'),                                                      // T:  Eviction Defense (2.a)	
-    has('tenantRights', 'evictions'),                                                      // U:  Foreclosure Prevention (2.b)	
-    has('tenantRights', 'buildingOrg'),                                                   // V:  Forming Tenants Association (2.c)	
-    has('tenantRights'),                                                                   // W:  Landlord harassment or neglect (2.d)	
-    has('adu'),                                                                             // X:  Building ADUs (2.e)	
-    has('neighbors'),                                                                       // Y:  BNSN info (3)	
-    has('neighbors'),                                                                       // Z:  Job training/workforce development (3.a)	
-    has('neighbors'),                                                                       // AA: Tree Planting (3.b)	
-    has('neighbors'),                                                                       // AB: Aquaponics Farm (3.c)	
-    has('neighbors', 'merchantsAssc'),                                                     // AC: SBA/ Support (3.d)	
-    has('neighbors'),                                                                       // AD: Bike Program (3.e)	
-    has('volunteering'),                                                                    // AE: EBPPREC (4)	
-    has('volunteering'),                                                                    // AF: BNSN (4.a)	
+    'No',                                                                                   // M:  Completed Contact Intake	
+    payload.communityOwner,                                                                 // N:  Become Community Owner of EBPREC	
+    has(...InterestGrouping['Permanently Affordable Homeownership'], 'affordableHousing'),  // O:  EB PREC Orientation (1)	
+    has('investor'),                                                                        // P:  CO/IO (1.a)	
+    has('groupBuy'),                                                                        // Q:  Owner Groups (1.b)		
+    has('groupBuy'),                                                                        // R:  Acquisitions (1.c)		
+    has('landTrusts'),                                                                      // S:  CLT Education (1.d)	
+    has(...InterestGrouping.Housing),                                                       // T:  Housing (2)	
+    has('tenantRights', 'evictions'),                                                       // U:  Eviction Defense (2.a)	
+    has('tenantRights', 'evictions'),                                                       // V:  Foreclosure Prevention (2.b)	
+    has('tenantRights', 'buildingOrg'),                                                     // W:  Forming Tenants Association (2.c)	
+    has('tenantRights'),                                                                    // X:  Landlord harassment or neglect (2.d)	
+    has('adu'),                                                                             // Y:  Building ADUs (2.e)	
+    has('neighbors'),                                                                       // Z:  BNSN info (3)	
+    has('neighbors'),                                                                       // AA:  Job training/workforce development (3.a)	
+    has('neighbors'),                                                                       // AB: Tree Planting (3.b)	
+    has('neighbors'),                                                                       // AC: Aquaponics Farm (3.c)	
+    has('neighbors', 'merchantsAssc'),                                                      // AD: SBA/ Support (3.d)	
+    has('neighbors'),                                                                       // AE: Bike Program (3.e)	
+    has('volunteering'),                                                                    // AF: EBPPREC (4)	
+    has('volunteering'),                                                                    // AG: BNSN (4.a)	
     has('volunteering'),                                                                    // AG: Policy (4.b)	
-    has('volunteering'),                                                                    // AH: TAs (4.c)	
-    payload.notes,                                // 	AI: Notes	
-    referralSources[payload.referralSource],      // 	AJ: How you find us?	
-    'No',                                         // 	AK: Have we asked/recieved feedback
-    payload.contactMethod,                        // 	AL: Contact Method
+    has('volunteering'),                                                                    // AI: TAs (4.c)	
+    payload.notes,                                // AJ: Notes	
+    referralSources[payload.referralSource],      // AK: How you find us?	
+    'No',                                         // AL: Have we asked/recieved feedback
   ]
 }
