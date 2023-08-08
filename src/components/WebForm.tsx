@@ -115,7 +115,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             inRegion: undefined,
             language: '',
             referralSource: undefined,
-            interests: [] as Interest[],
+            interests: ['orientation'] as Interest[],
             notes: '',
           } as FormData}
           validationSchema={validationSchema}
