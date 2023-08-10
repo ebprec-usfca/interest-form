@@ -29,9 +29,9 @@ type FormData = {
 // schema for Yup validation on form submission
 const validationSchema = Yup.object({
   firstName: Yup.string().required('Please enter your first name'),
-  lastName: Yup.string().required('Please enter your last name'),
+  lastName: Yup.string(),
   email: Yup.string().email('Invalid email address').required('Email is required'),
-  language: Yup.string().required('Language is required'),
+  language: Yup.string(),
   referralSource: Yup.string().required('Referral source is required'),
   interests: Yup.array().min(1, 'At least one interest is required'),
   phone: Yup.string()
@@ -49,9 +49,9 @@ const validationSchema = Yup.object({
         .length(5, 'Must be exactly 5 digits'),
       otherwise: (schema) => schema.notRequired(),
     }),
-  contactMethod: Yup.string().required('Contact method is required'),
-  communityOwner: Yup.string().required('Community ownership specification is required'),
-  inRegion: Yup.string().required('Please specify if you are in the region'),
+  contactMethod: Yup.string(),
+  communityOwner: Yup.string(),
+  inRegion: Yup.string(),
   urgent: Yup.string().required('Please specify if you have urgent needs'),
 });
 
@@ -116,6 +116,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             language: '',
             referralSource: undefined,
             interests: ['orientation'] as Interest[],
+            urgent: undefined,
             notes: '',
           } as FormData}
           validationSchema={validationSchema}
@@ -205,7 +206,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         errors.zip && touched.zip ? errorClass : ''
                       }`}
                     >
-                      <option value="">Select a Zip Code</option>
+                      <option value={undefined}>Select a Zip Code</option>
                       {zipCodes.map((zip) => (
                         <option key={zip} value={zip}>{zip}</option>
                         ))}
@@ -236,7 +237,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.urgent && touched.urgent ? errorClass : ''
                     }`}
                   >
-                    <option value="">Make your selection</option>
+                    <option value={undefined}>Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -254,7 +255,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.contactMethod && touched.contactMethod ? errorClass : ''
                     }`}
                   >
-                    <option value="">Select a method</option>
+                    <option value={undefined}>Select a method</option>
                     <option value="phone">Phone</option>
                     <option value="email">Email</option>
                   </Field>
@@ -272,7 +273,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.language && touched.language ? errorClass : ''
                     }`}
                   >
-                    <option value="">Select language</option>
+                    <option value={undefined}>Select language</option>
                     {languages.map((language) => (
                       <option key={language} value={language}>{language}</option>
                     ))}
@@ -291,7 +292,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.communityOwner && touched.communityOwner ? errorClass : ''
                     }`}
                   >
-                    <option value="">Make your selection</option>
+                    <option value={undefined}>Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -317,7 +318,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.inRegion && touched.inRegion ? errorClass : ''
                     }`}
                   >
-                    <option value="">Make your selection</option>
+                    <option value={undefined}>Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -335,7 +336,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.referralSource && touched.referralSource ? errorClass : ''
                     }`}
                   >
-                    <option value="">Select source</option>
+                    <option value={undefined}>Select source</option>
                     {Object.keys(referralSources).map((key) => (
                       <option key={key} value={key}>{referralSources[key as referralSource]}</option>
                     ))}
