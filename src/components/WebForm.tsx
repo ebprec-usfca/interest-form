@@ -52,7 +52,7 @@ const validationSchema = Yup.object({
   contactMethod: Yup.string(),
   communityOwner: Yup.string(),
   inRegion: Yup.string(),
-  urgent: Yup.string().required('Please specify if you have urgent needs'),
+  urgent: Yup.string().min(1).required('Please specify if you have urgent needs'),
 });
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
@@ -206,7 +206,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         errors.zip && touched.zip ? errorClass : ''
                       }`}
                     >
-                      <option value={undefined}>Select a Zip Code</option>
+                      <option value="">Select a Zip Code</option>
                       {zipCodes.map((zip) => (
                         <option key={zip} value={zip}>{zip}</option>
                         ))}
@@ -237,7 +237,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.urgent && touched.urgent ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Make your selection</option>
+                    <option value="">Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -255,7 +255,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.contactMethod && touched.contactMethod ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Select a method</option>
+                    <option value="">Select a method</option>
                     <option value="phone">Phone</option>
                     <option value="email">Email</option>
                   </Field>
@@ -273,7 +273,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.language && touched.language ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Select language</option>
+                    <option value="">Select language</option>
                     {languages.map((language) => (
                       <option key={language} value={language}>{language}</option>
                     ))}
@@ -292,7 +292,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.communityOwner && touched.communityOwner ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Make your selection</option>
+                    <option value="">Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -318,7 +318,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.inRegion && touched.inRegion ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Make your selection</option>
+                    <option value="">Make your selection</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </Field>
@@ -336,7 +336,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       errors.referralSource && touched.referralSource ? errorClass : ''
                     }`}
                   >
-                    <option value={undefined}>Select source</option>
+                    <option value="">Select source</option>
                     {Object.keys(referralSources).map((key) => (
                       <option key={key} value={key}>{referralSources[key as referralSource]}</option>
                     ))}
@@ -380,7 +380,14 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                 </div>
 
                 {/* Submit */}
-                <div className="flex justify-center items-center">
+                <div className="flex flex-col justify-center items-center">
+                  {((touched.firstName && errors.firstName) ||
+                    (touched.email && errors.email) ||
+                    (touched.phone && errors.phone) ||
+                    (touched.referralSource && errors.referralSource) ||
+                    (touched.urgent && errors.urgent)) && (
+                      <p className={errorClass}>Please fill out all required fields.</p>
+                    )}
                   <button
                     type="submit"
                     className="w-full max-w-md px-3 py-4 mt-4 text-white bg-primary rounded-lg focus:outline-none"
