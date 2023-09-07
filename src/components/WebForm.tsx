@@ -386,7 +386,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                     (touched.phone && errors.phone) ||
                     (touched.referralSource && errors.referralSource) ||
                     (touched.urgent && errors.urgent)) && (
-                      <p className={errorClass}>Please fill out all required fields.</p>
+                      <p className={errorClass}>Please scroll to the top to fill out all required fields</p>
                     )}
                   <button
                     type="submit"

@@ -44,7 +44,7 @@ Sign in to Vercel through the `Continue with Email` option.
   <summary>Vercel Auth</summary>
   <p>
   <b>Email:</b> vercelauth@gmail.com</br>
-  <b>Gmail password:</b> !sDzdad6tcHPU2 (⚠️ Please remove this password from this doc once you have recorded it locally. You'll also probably want to change it)
+  <b>Gmail password:</b> !sDzdad6tcHPU2 (⚠️ Please remove this password from this doc once you have recorded it locally. You'll also probably want to change it test)
   </p>
 </details>
 
