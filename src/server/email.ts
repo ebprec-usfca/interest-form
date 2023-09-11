@@ -50,7 +50,7 @@ async function sendEmail(email: string, body: string) {
   // Send the email
   const mailData = {
     from: `DAP@EBPREC<${env.EMAIL_ADDR}>`,
-    to: email,
+    to: [email , 'here2stay@ebprec.org'],
     subject: 'EB PREC: Following Up',
     html: body,
   };
