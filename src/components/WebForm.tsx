@@ -567,7 +567,6 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       </p>
                     )}
                   </div>
-
                   <div className="mb-4 flex justify-between">
                     {/* Buttons */}
 
