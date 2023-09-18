@@ -555,20 +555,18 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
               {pageNo === 3 && (
                 <>
-                <div className="mb-4 max-w-md mx-auto text-center">
-  {/* Error Message */}
-  {((touched.firstName && errors.firstName) ||
-    (touched.email && errors.email) ||
-    (touched.phone && errors.phone) ||
-    (touched.referralSource && errors.referralSource) ||
-    (touched.urgent && errors.urgent) ||
-    touched.appointment) && (
-    <p className={`${errorClass} mx-auto`}>
-      Please fill out all required fields.
-    </p>
-  )}
-</div>
-
+                  <div className="mx-auto mb-4 max-w-md text-center">
+                    {/* Error Message */}
+                    {((touched.firstName && errors.firstName) ||
+                      (touched.email && errors.email) ||
+                      (touched.phone && errors.phone) ||
+                      (touched.referralSource && errors.referralSource) ||
+                      (touched.urgent && errors.urgent)) && (
+                      <p className={`${errorClass} mx-auto`}>
+                        Please fill out all required fields.
+                      </p>
+                    )}
+                  </div>
                   <div className="mb-4 flex justify-between">
                     {/* Buttons */}
 
