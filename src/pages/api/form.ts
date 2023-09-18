@@ -11,6 +11,7 @@ export type FormPayload = {
   zip: string;
   contactMethod: 'phone' | 'email';
   communityOwner: 'Yes' | 'No';
+  appointment: 'Yes' | 'No';
   inRegion: 'Yes' | 'No';
   language: string;
   referralSource: referralSourceType;

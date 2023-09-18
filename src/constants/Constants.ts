@@ -14,13 +14,16 @@ export const languages = [
   'Arabic',
 ]
 
-export type referralSource = 'doorstep' |
+export type referralSource = 
+  'doorstep' |
   'event' |
   'flyer' |
   'social_media' |
   'referred_by_org' |
   'referred_by_friend' |
-  'walked_in'
+  'walked_in' |
+  'H4S' |
+  'B2B'
 
 export const referralSources: {[key in referralSource]: string} = {
   doorstep: 'At my doorstep',
@@ -30,10 +33,12 @@ export const referralSources: {[key in referralSource]: string} = {
   referred_by_org: 'Referred by another organization',
   referred_by_friend: 'Referred by family or friend',
   walked_in: 'Walked into 94th Ave Resource Center',
+  H4S: 'H4S: House for Sale',
+  B2B: 'B2B: Bussiness to Bussiness?',
  }
 
 export type Interest = 
-| 'orientation'
+  'orientation'
 | 'investor'
 | 'groupBuy'
 | 'landTrusts'
@@ -75,17 +80,20 @@ export const interestText: {[key in Interest]: string} = {
 export type zipCode = '94621' | '94603' | '94602' | 'Other'
 export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']
 
-/**
+/*
  * sheets maps referral sources to the google sheets ID they should write data to
  */
 export const sheetIDs: {[src in referralSource]: string} = {
-  doorstep: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  event: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  doorstep: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  event: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
 
-  flyer: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  social_media: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  referred_by_org: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  flyer: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  social_media: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  referred_by_org: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
 
-  referred_by_friend: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  walked_in: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  referred_by_friend: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  walked_in: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  
+  H4S: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  B2B: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
 }
