@@ -564,7 +564,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
     (touched.urgent && errors.urgent) ||
     touched.appointment) && (
     <p className={`${errorClass} mx-auto`}>
-      Please fill out all required field.
+      Please fill out all required fields.
     </p>
   )}
 </div>
