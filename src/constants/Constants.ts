@@ -34,7 +34,7 @@ export const referralSources: {[key in referralSource]: string} = {
   referred_by_friend: 'Referred by family or friend',
   walked_in: 'Walked into 94th Ave Resource Center',
   H4S: 'H4S: House for Sale',
-  B2B: 'B2B: Bussiness to Bussiness?',
+  B2B: 'B2B: Bussiness to Bussiness',
  }
 
 export type Interest = 
