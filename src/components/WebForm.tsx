@@ -563,7 +563,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       (touched.referralSource && errors.referralSource) ||
                       (touched.urgent && errors.urgent)) && (
                       <p className={`${errorClass} mx-auto`}>
-                        Please fill out all required field.
+                        Please fill out all required fields.
                       </p>
                     )}
                   </div>
