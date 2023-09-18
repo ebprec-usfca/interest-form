@@ -44,8 +44,7 @@ const validationSchema = Yup.object({
   otherZip: Yup.string()
     .when('zip', {
       is: (zip: string) => zip === 'Other',
-      then: (schema) => schema.required('Zip code is required')
-        .matches(/^[0-9]+$/, "Must be only digits")
+      then: (schema) => schema.matches(/^[0-9]+$/, "Must be only digits")
         .length(5, 'Must be exactly 5 digits'),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -243,6 +242,25 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   </Field>
                   <ErrorMessage name="urgent" component="div" className={errorClass} />
                 </div>
+
+                {/* Referral Source */}
+                <div className="mb-4">
+                  <label htmlFor="referralSource" className="block mb-1 text-lg">Where did you hear about us?</label>
+                  <Field
+                    as="select"
+                    id="referralSource"
+                    name="referralSource"
+                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
+                      errors.referralSource && touched.referralSource ? errorClass : ''
+                    }`}
+                  >
+                    <option value="">Select source</option>
+                    {Object.keys(referralSources).map((key) => (
+                      <option key={key} value={key}>{referralSources[key as referralSource]}</option>
+                    ))}
+                  </Field>
+                  <ErrorMessage name="referralSource" component="div" className={errorClass} />
+                </div>
     
                 {/* Contact Method */}
                 <div className="mb-4">
@@ -325,25 +343,6 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   <ErrorMessage name="inRegion" component="div" className={errorClass} />
                 </div>
     
-                {/* Referral Source */}
-                <div className="mb-4">
-                  <label htmlFor="referralSource" className="block mb-1 text-lg">Where did you hear about us?</label>
-                  <Field
-                    as="select"
-                    id="referralSource"
-                    name="referralSource"
-                    className={`w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500 ${
-                      errors.referralSource && touched.referralSource ? errorClass : ''
-                    }`}
-                  >
-                    <option value="">Select source</option>
-                    {Object.keys(referralSources).map((key) => (
-                      <option key={key} value={key}>{referralSources[key as referralSource]}</option>
-                    ))}
-                  </Field>
-                  <ErrorMessage name="referralSource" component="div" className={errorClass} />
-                </div>
-    
                 {/* Interests */}
                 <div className="mb-4">
                   <p className="mb-1 text-lg">Do you need support with/are you interested in:</p>
@@ -386,7 +385,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                     (touched.phone && errors.phone) ||
                     (touched.referralSource && errors.referralSource) ||
                     (touched.urgent && errors.urgent)) && (
-                      <p className={errorClass}>Please fill out all required fields.</p>
+                      <p className={errorClass}>Please scroll to the top to fill out all required fields</p>
                     )}
                   <button
                     type="submit"
