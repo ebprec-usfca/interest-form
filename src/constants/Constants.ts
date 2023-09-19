@@ -84,16 +84,16 @@ export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']
  * sheets maps referral sources to the google sheets ID they should write data to
  */
 export const sheetIDs: {[src in referralSource]: string} = {
-  doorstep: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
-  event: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  doorstep: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  event: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 
-  flyer: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
-  social_media: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
-  referred_by_org: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  flyer: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  social_media: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  referred_by_org: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 
-  referred_by_friend: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
-  walked_in: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  referred_by_friend: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  walked_in: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
   
-  H4S: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
-  B2B: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+  H4S: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  B2B: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
 }
