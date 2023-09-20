@@ -77,8 +77,8 @@ export const interestText: {[key in Interest]: string} = {
   volunteering: 'Community Organizing or Volunteering in East/Deep East Oakland',
 }
 
-export type zipCode = '94621' | '94603' | '94602' | 'Other'
-export const zipCodes: zipCode[] = ['94621', '94603', '94602', 'Other']
+export type zipCode = '94621' | '94603' | '94601' | 'Other'
+export const zipCodes: zipCode[] = ['94621', '94603', '94601', 'Other']
 
 /*
  * sheets maps referral sources to the google sheets ID they should write data to
