@@ -198,6 +198,9 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Email */}
                   <div className="mb-4">
+                    <h6 className="mb-4 text-primary font-heading">If you don't have email please use
+here2stay@ebprec.org & provide a phone number that is best to you.</h6>
+                    
                     <label htmlFor="email" className="mb-1 block text-lg">
                       Email:
                     </label>
@@ -218,6 +221,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Phone */}
                   <div className="mb-4">
+                    <h6></h6>
                     <label htmlFor="phone" className="mb-1 block text-lg">
                       Phone Number:
                     </label>
@@ -524,20 +528,16 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   </div>
 
                   {/* Google Calender */}
-                  <div className="mb-4">
+                  <div className="mb-4 flex">
                     <p className="mb-1 block text-lg">
-                      Check out our upcoming events!!!
+                      Check out our upcoming events →
                     </p>
-                    <div className="relative" style={{ paddingBottom: "75%" }}>
-                      <iframe
-                        src="https://calendar.google.com/calendar/u/0/embed?src=7317b23222c5e09645c10db1b4d5eb3123f78b640bc135c1d8526a99a678b2b9@group.calendar.google.com&ctz=America/Los_Angeles"
-                        className="absolute left-0 top-0 h-full w-full"
-                        frameBorder="0"
-                        scrolling="no"
-                      ></iframe>
-                    </div>
+                    <button type="button"
+                      className="float-right ml-auto w-1/3 max-w-md rounded-lg bg-primary px-2 py-2 text-white focus:outline-none"
+                      onClick={() => {
+                        window.open("https://calendar.google.com/calendar/u/0/embed?src=7317b23222c5e09645c10db1b4d5eb3123f78b640bc135c1d8526a99a678b2b9@group.calendar.google.com&ctz=America/Los_Angeles", '_blank');
+                      }}>View Calender</button>
                   </div>
-
                   {/* Open Response Notes */}
                   <div className="mb-4">
                     <label htmlFor="notes" className="mb-1 block text-lg">
@@ -563,7 +563,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       (touched.referralSource && errors.referralSource) ||
                       (touched.urgent && errors.urgent)) && (
                       <p className={`${errorClass} mx-auto`}>
-                        Please fill out ALL fields on First Page..
+                        Please fill out ALL fields on First Page.
                       </p>
                     )}
                   </div>
