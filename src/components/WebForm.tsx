@@ -198,8 +198,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Email */}
                   <div className="mb-4">
-                    <h6 className="mb-4 text-primary font-heading">If you don't have email please use
-here2stay@ebprec.org & provide a phone number that is best to you.</h6>
+                    <h6 className="mb-4 text-primary">If you don't have email please use 
+<span className='italic'> here2stay@ebprec.org</span> & provide a phone number that is best to you.</h6>
                     
                     <label htmlFor="email" className="mb-1 block text-lg">
                       Email:
@@ -608,7 +608,7 @@ here2stay@ebprec.org & provide a phone number that is best to you.</h6>
                   </button>
                 )}
 
-                {pageNo !== 3 && (
+                {pageNo === 2 && (
                   <button
                     type="button"
                     className="ml-auto w-1/3 max-w-md rounded-lg bg-primary px-2 py-2 text-white focus:outline-none"
@@ -620,6 +620,39 @@ here2stay@ebprec.org & provide a phone number that is best to you.</h6>
                   </button>
                 )}
               </div>
+              {pageNo === 1 && (
+                <>
+                 <div className="mx-auto mb-4 max-w-md text-center">
+                 {/* Error Message */}
+                 {((!touched.firstName || errors.firstName
+                   || !touched.email || errors.email
+                   || !touched.phone || errors.phone
+                   || !touched.zip || errors.zip
+                   || !touched.referralSource || errors.referralSource
+                   || !touched.urgent || errors.urgent) && (
+                   <p className={`${errorClass} mx-auto`}>
+                     Please fill out ALL fields on First Page.
+                   </p>
+                 ))}
+               </div>
+                  <button
+                    type="button"
+                    className="float-right w-1/3 max-w-md rounded-lg bg-primary px-2 py-2 text-white focus:outline-none"
+                    onClick={() => {
+                      if(touched.firstName && !errors.firstName
+                         && touched.email && !errors.email
+                         && touched.phone && !errors.phone
+                         && touched.zip && !errors.zip
+                         && touched.referralSource && !errors.referralSource
+                         && touched.urgent && !errors.urgent){
+                        setPageNo(Math.min(pageNo + 1, 3));
+                      }
+                    }
+                    }>
+                     Next
+                  </button>
+                  </>
+                )}
 
               {/* END OF TEST */}
             </Form>
