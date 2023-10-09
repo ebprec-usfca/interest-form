@@ -198,7 +198,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Email */}
                   <div className="mb-4">
-                    <h6 className="mb-4 text-primary">If you don't have email please use 
+                    <h6 className="mb-4 text-primary">If you don't have an email please use 
 <span className='italic'> here2stay@ebprec.org</span> & provide a phone number that is best to you.</h6>
                     
                     <label htmlFor="email" className="mb-1 block text-lg">
