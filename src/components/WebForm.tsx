@@ -198,7 +198,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Email */}
                   <div className="mb-4">
-                    <h6 className="mb-4 text-primary">If you don't have email please use 
+                    <h6 className="mb-4 text-primary">If you don't have an email please use 
 <span className='italic'> here2stay@ebprec.org</span> & provide a phone number that is best to you.</h6>
                     
                     <label htmlFor="email" className="mb-1 block text-lg">
@@ -563,7 +563,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       (touched.referralSource && errors.referralSource) ||
                       (touched.urgent && errors.urgent)) && (
                       <p className={`${errorClass} mx-auto`}>
-                        Please fill out ALL fields on First Page.
+                        Please fill out all the fields.
                       </p>
                     )}
                   </div>
@@ -631,7 +631,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                    || !touched.referralSource || errors.referralSource
                    || !touched.urgent || errors.urgent) && (
                    <p className={`${errorClass} mx-auto`}>
-                     Please fill out ALL fields on First Page.
+                      Please fill out all the fields.
                    </p>
                  ))}
                </div>
