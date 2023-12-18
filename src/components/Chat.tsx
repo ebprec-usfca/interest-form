@@ -32,20 +32,21 @@ const Chat: FC = () => {
       collapsible
       className='relative bg-white z-40 shadow'>
       <AccordionItem value='chat'>
-      <div className={`fixed right-8 bottom-8 transition-all duration-300 ${isChatOpen ? 'w-80 bg-white border border-gray-200 rounded-md' : 'rounded-full'} overflow-hidden`}>
-          
-            <AccordionTrigger className='px-6 border-b border-zinc-300'>
+        <div className={`fixed right-8 bottom-8 transition-all duration-300 ${isChatOpen ? 'w-80 bg-white border border-gray-200 rounded-md' : 'rounded-full'} overflow-hidden`}>
+          <AccordionTrigger className='py-0 border-b border-zinc-300'>
             {isChatOpen ? (
-              <ChatHeader />
+              <div className='px-6 py-4 '>
+                <ChatHeader />
+              </div>
             ) : (
               // Render an image when the chat is closed
               <div style={{ width: '40px', height: '40px', borderRadius: '50%', overflow: 'hidden' }}>
-  <Image src="/chat.jpg"
-         alt="Map showing service region of Downtown Oakland."
-         width={40}
-         height={40}
-         layout="responsive" />
-</div>
+                <Image src="/chat.jpg"
+                  alt="chatbot"
+                  width={40}
+                  height={40}
+                  layout="responsive" />
+              </div>
             )}
             </AccordionTrigger>
             <AccordionContent>
