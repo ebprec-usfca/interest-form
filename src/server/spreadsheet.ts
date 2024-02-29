@@ -4,7 +4,10 @@ import { JWT } from 'google-auth-library';
 import { env } from '~/env.mjs';
 import { type FormPayload } from '~/pages/api/form';
 
-import { sheetIDs, referralSources, InterestGrouping, type Interest } from '~/constants/Constants';
+import { sheetIDs, editSheetIDs, referralSources, InterestGrouping, type Interest } from '~/constants/Constants';
+const mainSheets = ['1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk', '1lzBRKpAcZGPo3r6sDyoTQYhVuBZGFzheQcFidkKgOGU']
+
+
 
 const client = new JWT({
   email: env.SHEETS_CLIENT_EMAIL,
@@ -15,22 +18,72 @@ const client = new JWT({
 const sheets = google.sheets({ version: 'v4', auth: client });
 
 export default async function updateSpreadsheet(payload: FormPayload) {
-  try {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetIDs[payload.referralSource],
-      range: 'A1:AL1',
-      insertDataOption: 'INSERT_ROWS',
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [
-          getRowData(payload),
-        ],
-      },
-    });
-    console.log('Spreadsheet updated');
-  } catch(err) {
-    console.error('Spreadsheet update failed:', err);
-  }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: '1lzBRKpAcZGPo3r6sDyoTQYhVuBZGFzheQcFidkKgOGU',
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: sheetIDs[payload.referralSource],
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: editSheetIDs[payload.referralSource],
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+    
+    
 }
 
 // get the row data from the payload

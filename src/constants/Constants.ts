@@ -84,16 +84,31 @@ export const zipCodes: zipCode[] = ['94621', '94603', '94601', 'Other']
  * sheets maps referral sources to the google sheets ID they should write data to
  */
 export const sheetIDs: {[src in referralSource]: string} = {
-  doorstep: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  event: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  doorstep: '1jMMrRWla-5O5cFtjjCpQDLgn9uH-NLGLmEFPbI_8xTE',
+  event: '1CIF-f4hQLXwM84mgQqA47dRIzwICCpEVHGUPNUyoQIo',
 
-  flyer: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  social_media: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  referred_by_org: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  flyer: '1o7PhIcY6S8gt2cMHlzhxmemQKrba0v1ufuMBai8mKvc',
+  social_media: '1DVTiWFCu_lEAUTxpLZQ_rur_ufDNHBOun-mZmWt_bO0',
+  referred_by_org: '1qtR47fFzBPJcCdHbl-BMfrpoPdbeBdRkGxRq02rMiGM',
 
-  referred_by_friend: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  walked_in: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  referred_by_friend: '1qtR47fFzBPJcCdHbl-BMfrpoPdbeBdRkGxRq02rMiGM',
+  walked_in: '1PS2PfsXu78l27fUanPvQLi1hHHEyPvSNz_mo1iiDH5s',
   
-  H4S: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
-  B2B: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
+  H4S: '1iEA3f_BccFRuD3HSA-0XpUtyKz_Sj0bUCCrnxgMGRBY',
+  B2B: '1Cn0w45n__BGZL0yOftjiDhQQBxxN91crq3rQrbpy6Do',
+}
+
+export const editSheetIDs: {[src in referralSource]: string} = {
+  doorstep: '1SqmlgMNIkZDhHUhvqtMdRpi3Szzxfqzbm_6QFDks8WU',
+  event: '1gw46_Ydd5uqLN0h6rAKGClbVOr0yX3JKWpSbzaWyW6I',
+
+  flyer: '1dQNVha-9vwW4_DlPTQKOzpD8_JnePvFncqsZGBaS4xk',
+  social_media: '1PsDGkpOcnjHDj3GSFGdAMaytlOjfKh-8ZrAcz8RBvYI',
+  referred_by_org: '1u40jlL9b6AP1qzMrHWvDVSfmyQvEolvWw_7EcB9hZA8',
+
+  referred_by_friend: '1u40jlL9b6AP1qzMrHWvDVSfmyQvEolvWw_7EcB9hZA8',
+  walked_in: '19JmAcDrcrNNbLp_54hZ8WeyMDxFa5klIJ_u3hnrqJL0',
+  
+  H4S: '1N7YoFMIlw-3jw2SvZ9GbFkvu-Y3xzFzxWpI5sdk5BJQ',
+  B2B: '1Mm2ZcMCrAgP1XIZtOmyA85hdG1uUuX3CMoSNZDVkc8Y',
 }
