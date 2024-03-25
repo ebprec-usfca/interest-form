@@ -35,11 +35,11 @@ const Home: NextPage = () => {
         ) : (
           <ErrorComponent  setResponse={setResponse} />
         )}
-        <Providers>
+        {/* <Providers>
         
           <Chat />
       
-      </Providers>
+      </Providers> */}
 
       </main>
     </>

@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useLanguage } from '~/context/LanguageContext';
 
 const ThankYou: React.FC = () => {
+  const {isSpanish, setIsSpanish} = useLanguage();
   return (
     <>
       <Head>
@@ -18,10 +20,10 @@ const ThankYou: React.FC = () => {
               width={200}
               height={100}
             />
-            <h1 className="text-4xl font-heading text-primary mb-4 text-center">Thank You!</h1>
+            <h1 className="text-4xl font-heading text-primary mb-4 text-center">{isSpanish ? "Gracias" : "Thank You!"}</h1>
           </div>
           <p className="text-center">
-            Your interest form has been submitted successfully. We will be in touch shortly regarding next steps!
+            {isSpanish ? "Tu formulario de interés ha sido enviado. Estaremos en contacto contigo para informarte sobre los siguientes pasos a seguir." : "Your interest form has been submitted successfully. We will be in touch shortly regarding next steps!"}
           </p>
         </div>
       </main>

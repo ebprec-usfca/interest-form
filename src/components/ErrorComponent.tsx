@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect } from 'react';
 import { WithResponseProps } from '../pages/index';
+import { useLanguage } from '~/context/LanguageContext';
 
 const ErrorComponent: React.FC<WithResponseProps> = ({ setResponse }) => {
     const handleClose = () => {
@@ -16,6 +17,7 @@ const ErrorComponent: React.FC<WithResponseProps> = ({ setResponse }) => {
     // Clear the timer if the component is unmounted before the timer expires
     return () => clearTimeout(timer);
   }, [setResponse]);
+  const {isSpanish, setIsSpanish} = useLanguage();
 
   return (
     <>
@@ -33,9 +35,9 @@ const ErrorComponent: React.FC<WithResponseProps> = ({ setResponse }) => {
               width={200}
               height={100}
             />
-            <h1 className="text-3xl font-heading text-primary mb-4 text-center">Oh no! Something went wrong</h1>
+            <h1 className="text-3xl font-heading text-primary mb-4 text-center">{isSpanish ? "Algo salió mal":"Oh no! Something went wrong"}</h1>
           </div>
-          <p className="text-gray-600 mb-4 text-center">Please try submitting the form again, or come back later!</p>
+          <p className="text-gray-600 mb-4 text-center">{isSpanish ? "Por favor, intenta enviar el formulario de nuevo o trata más tarde.":"Please try submitting the form again, or come back later!"}</p>
           <button
             className="bg-primary text-white font-bold py-2 px-4 rounded block mx-auto"
             onClick={handleClose}
