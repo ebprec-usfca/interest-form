@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes, referralSourcesInSpanish, interestTextInSpanish } from '~/constants/Constants';
+import { languages, languagesInSpanish, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes, referralSourcesInSpanish, interestTextInSpanish } from '~/constants/Constants';
 import { useLanguage } from '~/context/LanguageContext';
 import * as Yup from 'yup';
 
@@ -428,7 +428,14 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       }`}
                     >
                       <option value="">{isSpanish ? "Selecciona idioma":"Select language"}</option>
-                      {languages.map((language) => (
+                      {isSpanish ? 
+                        languagesInSpanish.map((language) => (
+                          <option key={language} value={language}>
+                            {language}
+                          </option>
+                        ))
+                      : 
+                      languages.map((language) => (
                         <option key={language} value={language}>
                           {language}
                         </option>

@@ -14,6 +14,14 @@ export const languages = [
   'Arabic',
 ]
 
+export const languagesInSpanish = [
+  'English',
+  'Español',
+  'Filipino/Tagalog',
+  'Chino',
+  'Vietnamita',
+]
+
 export type referralSource = 
   'doorstep' |
   'event' |
@@ -101,7 +109,7 @@ export const interestTextInSpanish: {[key in Interest]: string} = {
   adu: 'Construir una “Unidad de Vivienda Accesoria” (ADU, por sus siglas en inglés) en mi propiedad o legalizar una ADU construida sin permiso',
   buildingOrg: 'Organizarme junto a los habitantes de mi edificio para mejorar las condiciones del lugar o asegurar nuestra vivienda (asociación de inquilinos)',
   // Better Neighborhoods, Same Neighbors
-  neighbors: 'Más información sobre los recursos de &quot;Mejores barrios, mismos vecinos” (Better Neighborhoods, Same Neighbors)',
+  neighbors: 'Más información sobre los recursos de "Mejores barrios, mismos vecinos" (Better Neighborhoods, Same Neighbors)',
   merchantsAssc: 'Unirse a una Alianza de Pequeños Negocios para los negocios de East Oakland (sólo para propietarios de negocios)',
   // Organizing/Volunteering 
   volunteering: 'Organización de Movimiento Comunitario o voluntariado en East/Deep East Oakland',

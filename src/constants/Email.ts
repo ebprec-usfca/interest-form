@@ -14,7 +14,7 @@ export const emailIntro = (name: string, isSpanish: boolean) => {
 <br><br>
 It’s the Displacement Avoidance Program (DAP) Team at the East Bay Permanent Real Estate Cooperative, part of the <a href="https://bnsnoakland.org/">Better Neighborhoods, Same Neighbors Initiative</a> (BNSN), following up!
 <br><br>
-Funded by the State of California's Transformative Climate Communities Program, Better Neighborhoods, Same Neighbors envisions an East Oakland with healthy surroundings, safe and accessible transportation and thriving arts and culture that builds community wealth and ensures housing is a human right for existing East Oakland residents.   EB PREC is proud to be a partner on this historic initiative!
+Funded by the State of California's Transformative Climate Communities Program, Better Neighborhoods, Same Neighbors envisions an East Oakland with healthy surroundings, safe and accessible transportation and thriving arts and culture that builds community wealth and ensures housing is a human right for existing East Oakland residents. EB PREC is proud to be a partner on this historic initiative!
 <br><br>
 Building community wealth with community land trusts (or CLTS) and permanent real estate cooperatives, like the East Bay Permanent Real Estate Cooperative, is not only possible but already happening!
 <br><br>
@@ -365,7 +365,7 @@ Financiado por una subvención de $28.2 millones de dólares de Comunidades Clim
 </ul>`
 
 const orientationEmail = `<h3>${interestText.orientation}</h3>
-You indicated that you’d like to attend a New Member Orientation to learn more about our model of cooperative real estate.  We host an online orientation to our unique model of cooperative real estate every 3rd Tuesday where you can learn more and get questions answered live.  At the end of each quarter our orientation is online AND in-person at the BNSN Resource Center at 94th and International.  Please visit <a href="ebprec.eventbrite.com">ebprec.eventbrite.com</a> to sign up for our next Orientation.  You can also watch a <a href="https://ebprec.org/orientation">recording</a> of our orientation online or check out <a href="https://youtu.be/LC7D_boDd2Q">this video</a> about EBPREC for a quick intro to our coop.
+You indicated that you’d like to attend a New Member Orientation to learn more about our model of cooperative real estate.  We host an online orientation to our unique model of cooperative real estate every 3rd Tuesday of the month where you can learn more and get questions answered live.  At the end of each quarter our orientation is online AND in-person at the BNSN Resource Center at 94th and International.  Please visit <a href="ebprec.eventbrite.com">ebprec.eventbrite.com</a> to sign up for our next Orientation.  You can also watch a <a href="https://ebprec.org/orientation">recording</a> of our orientation online or check out <a href="https://youtu.be/LC7D_boDd2Q">this video</a> about EBPREC for a quick intro to our coop.
 <br><br>`
 
 const orientationEmailInSpanish = `<h3>${interestTextInSpanish.orientation}</h3>
@@ -428,7 +428,7 @@ If you'd like to volunteer at the Resource Center please email scott@ebprec.org.
 <br><br>
 If you're a renter facing challenges with your unit or landlord and would like support asserting your rights or organizing with your neighbors, there are a few tenants' groups you can plug into:
 <ol>
-  <li><a href="http://www.oaklandtenantsunion.org/">Oakland Tenants Union</a> offers regular virtual counseling hours and meetings every 2nd Monday on Zoom</li>
+  <li><a href="http://www.oaklandtenantsunion.org/">Oakland Tenants Union</a> offers regular virtual counseling hours and meetings every 2nd Monday of the month on Zoom</li>
   <li><a href="https://baytanc.com/">Tenant and Neighborhood Councils</a>  is a Bay Area member-run housing organization building tenant power for renters</li>
   <li><a href="https://urbanhabitat.org/regional-tenant-organizing-network">The Regional Tenant Organizing Network</a> is a project of Urban Habitat that is uniting tenants across Northern California, from Sacramento to San Jose, working together to rise up against some of the most prominent corporate landlords in the region.</li>
   <li><a href="https://cjjc.org/become-a-member/">Causa Justa:Just Cause</a> is an Oakland-based non-profit who organizes its members in the fight for housing justice and supports tenants in exercising their rights</li>
