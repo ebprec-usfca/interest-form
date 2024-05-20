@@ -5,6 +5,10 @@ import Head from "next/head";
 import WebForm from "../components/WebForm";
 import ThankYou from "../components/ThankYou";
 import ErrorComponent from "../components/ErrorComponent";
+import Chat from '../components/Chat'
+//import '../styles/globals.css'
+//import { Inter } from 'next/font/google'
+import Providers from '../components/Providers'
 
 export type WithResponseProps = {
   setResponse: React.Dispatch<React.SetStateAction<boolean | null>>;
@@ -31,6 +35,12 @@ const Home: NextPage = () => {
         ) : (
           <ErrorComponent  setResponse={setResponse} />
         )}
+        {/* <Providers>
+        
+          <Chat />
+      
+      </Providers> */}
+
       </main>
     </>
   );

@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { languages, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes } from '~/constants/Constants';
-
+import { languages, languagesInSpanish, referralSources, type Interest, InterestGrouping, interestText, referralSource, zipCodes, referralSourcesInSpanish, interestTextInSpanish } from '~/constants/Constants';
+import { useLanguage } from '~/context/LanguageContext';
 import * as Yup from 'yup';
+
 
 import { type FormPayload } from '~/pages/api/form';
 import { type WithResponseProps } from '~/pages/index';
@@ -25,40 +26,66 @@ type FormData = {
   appointment: 'Yes' | 'No' | undefined;
   inRegion: 'Yes' | 'No' | undefined;
   notes: string;
+  isSpanish: boolean;
 };
+function getTranslation(isSpanish: boolean, key: string): string {
+  if (isSpanish) {
+    switch (key) {
+      case 'Permanently Affordable Homeownership':
+        return 'Ser propietario de una vivienda asequible de forma permanente';
+      case 'Housing':
+        return 'Vivienda';
+      case 'Better Neighborhoods, Same Neighbors':
+        return 'Mejores barrios, mismos vecinos';
+      case 'Organizing/Volunteering':
+        return 'Organización de Movimiento Comunitario o Voluntariado';
+      default:
+        return key; // Fallback to the original key if no translation is found
+    }
+  } else {
+    return key; // Return the original key if isSpanish is false
+  }
+}
+
+
+
 
 // schema for Yup validation on form submission
-const validationSchema = Yup.object({
-  firstName: Yup.string().required('Please enter your first name'),
-  lastName: Yup.string(),
-  email: Yup.string().email('Invalid email address').required('Email is required'),
-  language: Yup.string(),
-  referralSource: Yup.string().required('Referral source is required'),
-  interests: Yup.array().min(1, 'At least one interest is required'),
-  phone: Yup.string()
-    .required('Phone number is required')
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .min(10, 'Must be exactly 10 digits')
-    .max(10, 'Must be exactly 10 digits'),
-  zip: Yup.string()
-    .required('Zip code is required'),
-  otherZip: Yup.string()
-    .when('zip', {
-      is: (zip: string) => zip === 'Other',
-      then: (schema) => schema.matches(/^[0-9]+$/, "Must be only digits")
-        .length(5, 'Must be exactly 5 digits'),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-  contactMethod: Yup.string(),
-  communityOwner: Yup.string(),
-  appointment: Yup.string(),
-  inRegion: Yup.string(),
-  urgent: Yup.string().min(1).required('Please specify if you have urgent needs'),
-});
+
 
 const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [pageNo, setPageNo] = React.useState(1);
+  const {isSpanish, setIsSpanish} = useLanguage();
+  
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required(isSpanish ? 'Por favor, pon tu nombre':'Please enter your first name'),
+    lastName: Yup.string(),
+    email: Yup.string().email(isSpanish ? 'Dirección de Email no válida': 'Invalid email address').required(isSpanish? 'Debes poner un Email':'Email is required'),
+    language: Yup.string(),
+    referralSource: Yup.string().required(isSpanish ? 'Debes indicar cómo te enteraste sobre nosotros':'Referral source is required'),
+    interests: Yup.array().min(1, isSpanish ? 'Debes poner al menos un interés':'At least one interest is required'),
+    phone: Yup.string()
+      .required(isSpanish ? 'Debes poner un número de teléfono':'Phone number is required')
+      .matches(/^[0-9]+$/, isSpanish ? "Debes usar sólo números":"Must be only digits")
+      .min(10, isSpanish ? 'Debe tener exactamente 10 dígitos':'Must be exactly 10 digits')
+      .max(10, isSpanish ? 'Debe tener exactamente 10 dígitos':'Must be exactly 10 digits'),
+    zip: Yup.string()
+      .required(isSpanish ? 'Debes indicar un código postal':'Zip code is required'),
+    otherZip: Yup.string()
+      .when('zip', {
+        is: (zip: string) => zip === 'Other',
+        then: (schema) => schema.matches(/^[0-9]+$/, isSpanish ? "Debes usar sólo números":"Must be only digits")
+          .length(5, isSpanish? 'Debe tener exactamente 5 dígitos':'Must be exactly 5 digits'),
+        otherwise: (schema) => schema.notRequired(),
+      }),
+    contactMethod: Yup.string(),
+    communityOwner: Yup.string(),
+    appointment: Yup.string(),
+    inRegion: Yup.string(),
+    urgent: Yup.string().min(1).required(isSpanish ? 'Por favor, especifica si necesitas algo urgente':'Please specify if you have urgent needs'),
+  });
 
   // handle form submission. This is where we will make our POST request to the server
   const handleSubmit = async (values: FormData) => {
@@ -79,6 +106,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
       appointment: values.appointment!,
       inRegion: values.inRegion!,
       notes: values.notes,
+      isSpanish: isSpanish,
     };
     const payloadJSON = JSON.stringify(payload);
 
@@ -100,15 +128,29 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
   return (
     <div className="min-h-screen max-w-[800px] rounded border border-gray-300 bg-white p-6 shadow sm:min-h-0 sm:p-8 md:p-10 lg:p-12 xl:p-14">
       <div className="flex flex-col items-center justify-end md:flex-row-reverse md:items-baseline md:justify-between md:gap-10">
-        <Image
-          src="/logo.png"
-          alt="Map showing service region of Downtown Oakland."
-          width={200}
-          height={100}
-        />
+        <div>
+          <Image
+            src="/logo.png"
+            alt="Map showing service region of Downtown Oakland."
+            width={200}
+            height={100}
+          />
+          <div className='max-w-[200px] flex items-center justify-between'>
+            <p className='font-bold text-primary'>English</p>
+            <button className={`relative border-0 rounded-full cursor-pointer w-8 h-5 appearance-none ${isSpanish ? 'bg-green-500' : 'bg-red-500'}`} onClick={() => setIsSpanish(!isSpanish)}>
+              <span className={`absolute bg-white rounded-full w-4 h-4 top-0.5 transition-all duration-500 ease-in-out ${isSpanish ? 'left-3.5'  : 'left-0.5'}`} />
+            </button>
+            <p className='font-bold text-primary'>Español</p>
+          </div>
+
+        </div>
+
+      
         <h1 className="mb-4 text-center font-heading text-3xl text-primary md:text-4xl">
           East Oakland is #Here2Stay
         </h1>
+        
+        
       </div>
       {/* Name */}
       <Formik
@@ -128,6 +170,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             interests: ["orientation"] as Interest[],
             urgent: undefined,
             notes: "",
+            isSpanish: true,
           } as FormData
         }
         validationSchema={validationSchema}
@@ -152,13 +195,12 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
           return (
             <Form>
-              {/* TEST */}
               {pageNo === 1 ? (
                 <>
                   <div className="mb-4 flex flex-col gap-4 sm:flex-row">
                     <div className="w-full sm:w-1/2">
                       <label htmlFor="firstName" className="mb-1 block text-lg">
-                        First Name:
+                        {isSpanish? "Nombre": "First Name"}:
                       </label>
                       <Field
                         type="text"
@@ -172,13 +214,16 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       />
                       <ErrorMessage
                         name="firstName"
-                        component="div"
-                        className={errorClass}
+                        render={message => (
+                          <div className={errorClass}>
+                            {isSpanish ? "Por favor, pon tu nombre" : message}
+                          </div>
+                        )}
                       />
                     </div>{" "}
                     <div className="w-full sm:w-1/2">
                       <label htmlFor="lastName" className="mb-1 block text-lg">
-                        Last Name:
+                        {isSpanish? "Apellido": "Last Name"}:
                       </label>
                       <Field
                         type="text"
@@ -198,11 +243,9 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
 
                   {/* Email */}
                   <div className="mb-4">
-                    <h6 className="mb-4 text-primary">If you don't have an email please use 
-<span className='italic'> here2stay@ebprec.org</span> & provide a phone number that is best to you.</h6>
-                    
+                    <h6 className="mb-4 text-primary">{isSpanish? <>Si no tienes email, usa: <span className='italic'>here2stay@ebprec.org</span> e indica el número de teléfono que más te convenga.</> : <>If you don't have an email please use <span className='italic'>here2stay@ebprec.org</span> & provide a phone number that is best to you.</>}</h6>
                     <label htmlFor="email" className="mb-1 block text-lg">
-                      Email:
+                      {isSpanish? "Email (Correo electrónico)": "Email"}:
                     </label>
                     <Field
                       type="email"
@@ -223,7 +266,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   <div className="mb-4">
                     <h6></h6>
                     <label htmlFor="phone" className="mb-1 block text-lg">
-                      Phone Number:
+                      {isSpanish? "Teléfono": "Phone Number"}:
                     </label>
                     <Field
                       type="text"
@@ -243,7 +286,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Zip Code */}
                   <div className="mb-4">
                     <label htmlFor="zip" className="mb-1 block text-lg">
-                      Zip Code:
+                      {isSpanish? "Código postal": "Zip Code"}:
                     </label>
                     <div className="flex gap-4">
                       <Field
@@ -254,10 +297,10 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           errors.zip && touched.zip ? errorClass : ""
                         }`}
                       >
-                        <option value="">Select a Zip Code</option>
+                        <option value="">{isSpanish? "Selecciona un código postal" : "Select a Zip Code"}</option>
                         {zipCodes.map((zip) => (
                           <option key={zip} value={zip}>
-                            {zip}
+                            {isSpanish && zip === "Other"? "Otro": zip}        
                           </option>
                         ))}
                       </Field>
@@ -287,8 +330,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Urgent Needs */}
                   <div className="mb-4">
                     <label htmlFor="urgent" className="mb-1 block text-lg">
-                      Are you at risk of losing your home or business in Deep
-                      East Oakland?
+                      {isSpanish? "¿Estás en riesgo de perder tu casa o negocio en Deep East Oakland?" :"Are you at risk of losing your home or business in Deep East Oakland?"}
                     </label>
                     <Field
                       as="select"
@@ -298,8 +340,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         errors.urgent && touched.urgent ? errorClass : ""
                       }`}
                     >
-                      <option value="">Make your selection</option>
-                      <option value="Yes">Yes</option>
+                      <option value="">{isSpanish?"Elige tu respuesta" :"Make your selection"}</option>
+                      <option value="Yes">{isSpanish? "Sí" : "Yes"}</option>
                       <option value="No">No</option>
                     </Field>
                     <ErrorMessage
@@ -315,7 +357,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       htmlFor="referralSource"
                       className="mb-1 block text-lg"
                     >
-                      Where did you hear about us?
+                      {isSpanish ? "¿Cómo te enteraste sobre nosotros?" : "Where did you hear about us?"}
                     </label>
                     <Field
                       as="select"
@@ -327,10 +369,10 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           : ""
                       }`}
                     >
-                      <option value="">Select source</option>
+                      <option value="">{isSpanish ? "Seleccionar fuente":"Select source"}</option>
                       {Object.keys(referralSources).map((key) => (
                         <option key={key} value={key}>
-                          {referralSources[key as referralSource]}
+                          {isSpanish ? referralSourcesInSpanish[key as referralSource]:referralSources[key as referralSource]}
                         </option>
                       ))}
                     </Field>
@@ -349,7 +391,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       htmlFor="contactMethod"
                       className="mb-1 block text-lg"
                     >
-                      What's the best way to reach you:
+                      {isSpanish ? "¿Cuál es la mejor forma de contactarte?":"What's the best way to reach you"}:
                     </label>
                     <Field
                       as="select"
@@ -361,9 +403,9 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           : ""
                       }`}
                     >
-                      <option value="">Select a method</option>
-                      <option value="phone">Phone</option>
-                      <option value="email">Email</option>
+                      <option value="">{isSpanish ? "Selecciona un método":"Select a method"}</option>
+                      <option value="phone">{isSpanish ? "Teléfono" :"Phone"}</option>
+                      <option value="email">{isSpanish ? "Email (Correo electrónico)": "Email"}</option>
                     </Field>
                     <ErrorMessage
                       name="contactMethod"
@@ -375,7 +417,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Language */}
                   <div className="mb-4">
                     <label htmlFor="language" className="mb-1 block text-lg">
-                      Preferred Language:
+                      {isSpanish ? "Idioma preferido":"Preferred Language"}:
                     </label>
                     <Field
                       as="select"
@@ -385,8 +427,15 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         errors.language && touched.language ? errorClass : ""
                       }`}
                     >
-                      <option value="">Select language</option>
-                      {languages.map((language) => (
+                      <option value="">{isSpanish ? "Selecciona idioma":"Select language"}</option>
+                      {isSpanish ? 
+                        languagesInSpanish.map((language) => (
+                          <option key={language} value={language}>
+                            {language}
+                          </option>
+                        ))
+                      : 
+                      languages.map((language) => (
                         <option key={language} value={language}>
                           {language}
                         </option>
@@ -405,7 +454,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       htmlFor="communityOwner"
                       className="mb-1 block text-lg"
                     >
-                      Have you become a community owner with EB PREC?
+                      {isSpanish ? "¿Te has vuelto dueño comunitario con EB PREC?":"Have you become a community owner with EB PREC?"}
                     </label>
                     <Field
                       as="select"
@@ -417,8 +466,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           : ""
                       }`}
                     >
-                      <option value="">Make your selection</option>
-                      <option value="Yes">Yes</option>
+                      <option value="">{isSpanish ? "Elige tu respuesta":"Make your selection"}</option>
+                      <option value="Yes">{isSpanish ? "Sí":"Yes"}</option>
                       <option value="No">No</option>
                     </Field>
                     <ErrorMessage
@@ -431,7 +480,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Appointment Request */}
                   <div className="mb-4">
                     <label htmlFor="appointment" className="mb-1 block text-lg">
-                      Do you want to request an appointment?
+                      {isSpanish ? "¿Quieres solicitar una cita?":"Do you want to request an appointment?"}
                     </label>
                     <Field
                       as="select"
@@ -443,8 +492,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           : ""
                       }`}
                     >
-                      <option value="">Make your selection</option>
-                      <option value="Yes">Yes</option>
+                      <option value="">{isSpanish ? "Elige tu respuesta":"Make your selection"}</option>
+                      <option value="Yes">{isSpanish ? "Sí":"Yes"}</option>
                       <option value="No">No</option>
                     </Field>
                     <ErrorMessage
@@ -457,7 +506,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Service Region */}
                   <div className="mb-4">
                     <label htmlFor="inRegion" className="mt-1 block text-lg">
-                      Do you live in the region pictured below?
+                      {isSpanish ? "¿Vives en la región que se muestra a continuación?":"Do you live in the region pictured below?"}
                     </label>
                     <div className="relative">
                       <Image
@@ -475,8 +524,8 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         errors.inRegion && touched.inRegion ? errorClass : ""
                       }`}
                     >
-                      <option value="">Make your selection</option>
-                      <option value="Yes">Yes</option>
+                      <option value="">{isSpanish ? "Elige tu respuesta":"Make your selection"}</option>
+                      <option value="Yes">{isSpanish ? "Sí":"Yes"}</option>
                       <option value="No">No</option>
                     </Field>
                     <ErrorMessage
@@ -491,7 +540,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Interests */}
                   <div className="mb-4">
                     <p className="mb-1 text-lg">
-                      Do you need support with/are you interested in:
+                      {isSpanish ? "¿Necesitas ayuda con / o estás interesado/a en:" : "Do you need support with/are you interested in:"}
                     </p>
                     <ErrorMessage
                       name="interests"
@@ -504,7 +553,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                           key={key}
                           className="font-heading text-xl text-primary"
                         >
-                          {key}
+                          {getTranslation(isSpanish, key)}
                         </h3>
                         {arr.map((interest) => (
                           <label
@@ -520,7 +569,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                               className="mr-2 h-[13px] w-[13px]"
                               onChange={handleCheckboxChange}
                             />
-                            {interestText[interest]}
+                            {isSpanish ? interestTextInSpanish[interest]:interestText[interest]}
                           </label>
                         ))}
                       </>
@@ -530,18 +579,18 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   {/* Google Calender */}
                   <div className="mb-4 flex">
                     <p className="mb-1 block text-lg">
-                      Check out our upcoming events →
+                      {isSpanish ? "Mira nuestros próximos eventos":"Check out our upcoming events"} →
                     </p>
                     <button type="button"
                       className="float-right ml-auto w-1/3 max-w-md rounded-lg bg-primary px-2 py-2 text-white focus:outline-none"
                       onClick={() => {
                         window.open("https://calendar.google.com/calendar/u/0/embed?src=7317b23222c5e09645c10db1b4d5eb3123f78b640bc135c1d8526a99a678b2b9@group.calendar.google.com&ctz=America/Los_Angeles", '_blank');
-                      }}>View Calender</button>
+                      }}>{isSpanish ? "Ver calendario":"View Calendar"}</button>
                   </div>
                   {/* Open Response Notes */}
                   <div className="mb-4">
                     <label htmlFor="notes" className="mb-1 block text-lg">
-                      Anything else you'd like us to know?
+                      {isSpanish ? "¿Algo más que quieres compartir?":"Anything else you'd like us to know?"}
                     </label>
                     <Field
                       as="textarea"
@@ -563,7 +612,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       (touched.referralSource && errors.referralSource) ||
                       (touched.urgent && errors.urgent)) && (
                       <p className={`${errorClass} mx-auto`}>
-                        Please fill out all the fields.
+                        {isSpanish ? "Por favor, responde a todas las preguntas." : "Please fill out all the fields."}
                       </p>
                     )}
                   </div>
@@ -578,7 +627,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                         setPageNo(Math.max(pageNo - 1, 1));
                       }}
                     >
-                      Back
+                      {isSpanish ? "Volver" : "Back"}
                     </button>
 
                     {/* Submit Button */}
@@ -589,7 +638,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       {isLoading ? (
                         <FaSpinner className="mx-auto animate-spin" />
                       ) : (
-                        "Submit"
+                        isSpanish ? "Enviar":"Submit"
                       )}
                     </button>
                   </div>
@@ -604,7 +653,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       setPageNo(Math.max(pageNo - 1, 1));
                     }}
                   >
-                    Back
+                    {isSpanish ? "Volver" : "Back"}
                   </button>
                 )}
 
@@ -616,7 +665,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       setPageNo(Math.min(pageNo + 1, 3));
                     }}
                   >
-                    Next
+                    {isSpanish? "Siguiente" : "Next"}
                   </button>
                 )}
               </div>
@@ -631,7 +680,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                    || !touched.referralSource || errors.referralSource
                    || !touched.urgent || errors.urgent) && (
                    <p className={`${errorClass} mx-auto`}>
-                      Please fill out all the fields.
+                      {isSpanish ? "Por favor, responde a todas las preguntas." : "Please fill out all the fields."}
                    </p>
                  ))}
                </div>
@@ -649,12 +698,10 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                       }
                     }
                     }>
-                     Next
+                     {isSpanish? "Siguiente" : "Next"}
                   </button>
                   </>
                 )}
-
-              {/* END OF TEST */}
             </Form>
           );
         }}

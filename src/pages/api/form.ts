@@ -17,6 +17,7 @@ export type FormPayload = {
   referralSource: referralSourceType;
   interests: interestType[];
   notes: string;
+  isSpanish: boolean;
 };
 
 
