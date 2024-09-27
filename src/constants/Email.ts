@@ -339,6 +339,8 @@ La EOSBA se reúne cada segundo miércoles en la Biblioteca de la 81ª Avenida. 
 const neighborsEmail = `<h3>${interestText.neighbors}</h3>
 You indicated that you were interested in learning more about the Better Neighbors program and resources.
 <br><br>
+The East Oakland Neighborhood Initiative, aka EONI, exists to prioritize the East Oakland community in developing solutions to the biggest challenges to living and staying in Oakland.  EONI created the plan that led to the Better Neighborhoods, Same Neighbors Initiative and is currently behind efforts to get East Oakland's input on where to build Resilience Hubs, critical resources to help communities thrive through extreme weather and climate crisis.  Please click <a href="https://forms.office.com/pages/responsepage.aspx?id=kA2EVlwUhEuSjxAVUfvyMIqQdjtjb8VAl4RISKD6SCJUN0NSNkdUODFTRklFNDFWRk01NlNHUlFBQi4u"> here </a> to complete the survey and receive a gift card in return!
+<br><br>
 Funded by a $28.2 million Transformative Climate Communities (TCC) grant from the California Strategic Growth Council, the <a href="https://bnsnoakland.org/">Better Neighborhoods, Same Neighbors Initiative</a> brings together the City of Oakland, 9 community organizations, residents and business owners to implement five projects across four transformative elements in a five-square-mile area in Deep East Oakland. Those 5 projects were recommended and selected by the Deep East community and include: 
 <ul>
   <li>affordable housing (led by Related)</li>
@@ -352,6 +354,10 @@ Funded by a $28.2 million Transformative Climate Communities (TCC) grant from th
 
 const neighborsEmailInSpanish = `<h3>${interestTextInSpanish.neighbors}</h3>
 Has indicado que estás interesado/a en obtener más información sobre el programa "Mejores Vecinos" y sus recursos.
+<br><br>
+La Iniciativa del Vecindario de East Oakland, también conocida como EONI, existe para priorizar a la comunidad de East Oakland en el desarrollo de soluciones a las mayores dificultades de vivir y permanecer en Oakland. EONI creó el plan que llevó a la Iniciativa de Mejores Vecindarios, Mismos Vecinos conocida como Better Neighborhoods, Same Neighbors (BNSN), que actualmente está detrás de los esfuerzos para obtener la opinión de East Oakland sobre dónde construir Centros de Resiliencia y quién está detrás de los esfuerzos para obtener la opinión de East Oakland sobre dónde construir Centros de Resiliencia, recursos críticos para ayudar a las comunidades a prosperar durante el clima extremo y las crisis climáticas.
+<br><br>
+¡Haga clic aquí <a href="https://forms.office.com/pages/responsepage.aspx?id=kA2EVlwUhEuSjxAVUfvyMIqQdjtjb8VAl4RISKD6SCJUN0NSNkdUODFTRklFNDFWRk01NlNHUlFBQi4u"> here </a> para completar la encuesta y recibir una tarjeta de regalo a cambio!
 <br><br>
 Financiado por una subvención de $28.2 millones de dólares de Comunidades Climáticas Transformativas (Transformative Climate Communities, TCC, por sus siglas en inglés) del Consejo de Crecimiento Estratégico de California (California Strategic Growth Council), la <a href="https://bnsnoakland.org/">iniciativa Mejores Vecindarios, Mismos Vecinos (Better Neighborhoods, Same Neighbors)</a> reúne a la Ciudad de Oakland, 9 organizaciones comunitarias, residentes y propietarios de negocios para implementar 5 proyectos a través de 4 elementos transformadores en un área de cinco millas cuadradas en Deep East Oakland. Estos 5 proyectos fueron recomendados y seleccionados por la comunidad de Deep East e incluyen:
 <ul>
