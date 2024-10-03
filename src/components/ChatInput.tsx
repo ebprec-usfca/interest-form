@@ -8,6 +8,8 @@ import { nanoid } from 'nanoid'
 import { FC, HTMLAttributes, useContext, useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import TextareaAutosize from 'react-textarea-autosize'
+import { getChatGPTResponse } from '../lib/getChatGPTResponse';
+
 
 interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 

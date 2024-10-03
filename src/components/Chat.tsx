@@ -45,7 +45,8 @@ const Chat: FC = () => {
                   alt="chatbot"
                   width={40}
                   height={40}
-                  layout="responsive" />
+                  style={{ width: '100%', height: 'auto' }}
+                   />
               </div>
             )}
             </AccordionTrigger>
