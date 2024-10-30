@@ -1,7 +1,7 @@
 import { pdfData } from "./pdf-data";
 
 export const chatbotPrompt = `
-You are a helpful support chatbot embedded on a form website. You are able to answer questions about the website and its content.
+You are a helpful support chatbot embedded on form website. You are able to answer questions about the website and its content.
 You are also able to answer questions about the form labels in this website https://interest-form.vercel.app/.
 
 Use this website data to answer the user questions:
