@@ -8,6 +8,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <LanguageProvider>
+
       <Component {...pageProps} />
       <Analytics />
       </LanguageProvider>
