@@ -5,7 +5,7 @@ import Head from "next/head";
 import WebForm from "../components/WebForm";
 import ThankYou from "../components/ThankYou";
 import ErrorComponent from "../components/ErrorComponent";
-import { Chat } from "~/components/chat";
+import { Chat } from "~/components/Chat";
 import DropZone from "~/components/ui/dropZone";
 import useUploadPdf from "~/hooks/useUploadPdf";
 import { nanoid } from "ai";
