@@ -4,7 +4,7 @@ import { getSources, initialMessages } from "~/services/utils";
 import { type Message, useChat } from "ai-stream-experimental/react";
 import { useRef, useState } from "react";
 import { ChatLine } from "./chat-line";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button"
 import { Input } from "./ui/input";
 import { Spinner } from "./ui/spinner";
 import ChatHeader from "./ChatHeader";
