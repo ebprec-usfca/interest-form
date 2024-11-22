@@ -20,7 +20,7 @@ const sheets = google.sheets({ version: 'v4', auth: client });
 export default async function updateSpreadsheet(payload: FormPayload) {
       try {
         await sheets.spreadsheets.values.append({
-          spreadsheetId: '15bgi5YH_wLLCicSH4AtPfARKBmRif3q7fQwUkTWYRSE',
+          spreadsheetId: '1_7XPZN4Jh3Q1irMbYiFPuVnlyWoC5_4TbXx6ej2_lRk',
           range: 'A1:AL1',
           insertDataOption: 'INSERT_ROWS',
           valueInputOption: 'USER_ENTERED',
@@ -34,54 +34,54 @@ export default async function updateSpreadsheet(payload: FormPayload) {
       } catch(err) {
         console.error('Spreadsheet update failed:', err);
       }
-      // try {
-      //   await sheets.spreadsheets.values.append({
-      //     spreadsheetId: '1lzBRKpAcZGPo3r6sDyoTQYhVuBZGFzheQcFidkKgOGU',
-      //     range: 'A1:AL1',
-      //     insertDataOption: 'INSERT_ROWS',
-      //     valueInputOption: 'USER_ENTERED',
-      //     requestBody: {
-      //       values: [
-      //         getRowData(payload),
-      //       ],
-      //     },
-      //   });
-      //   console.log('Spreadsheet updated');
-      // } catch(err) {
-      //   console.error('Spreadsheet update failed:', err);
-      // }
-      // try {
-      //   await sheets.spreadsheets.values.append({
-      //     spreadsheetId: sheetIDs[payload.referralSource],
-      //     range: 'A1:AL1',
-      //     insertDataOption: 'INSERT_ROWS',
-      //     valueInputOption: 'USER_ENTERED',
-      //     requestBody: {
-      //       values: [
-      //         getRowData(payload),
-      //       ],
-      //     },
-      //   });
-      //   console.log('Spreadsheet updated');
-      // } catch(err) {
-      //   console.error('Spreadsheet update failed:', err);
-      // }
-      // try {
-      //   await sheets.spreadsheets.values.append({
-      //     spreadsheetId: editSheetIDs[payload.referralSource],
-      //     range: 'A1:AL1',
-      //     insertDataOption: 'INSERT_ROWS',
-      //     valueInputOption: 'USER_ENTERED',
-      //     requestBody: {
-      //       values: [
-      //         getRowData(payload),
-      //       ],
-      //     },
-      //   });
-      //   console.log('Spreadsheet updated');
-      // } catch(err) {
-      //   console.error('Spreadsheet update failed:', err);
-      // }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: '1lzBRKpAcZGPo3r6sDyoTQYhVuBZGFzheQcFidkKgOGU',
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: sheetIDs[payload.referralSource],
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
+      try {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId: editSheetIDs[payload.referralSource],
+          range: 'A1:AL1',
+          insertDataOption: 'INSERT_ROWS',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              getRowData(payload),
+            ],
+          },
+        });
+        console.log('Spreadsheet updated');
+      } catch(err) {
+        console.error('Spreadsheet update failed:', err);
+      }
     
     
 }
