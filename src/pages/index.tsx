@@ -53,11 +53,11 @@ const Home: NextPage = () => {
           <ErrorComponent setResponse={setResponse} />
         )}
         
-      {/* <div className="flex flex-1 py-4">
+      <div className="flex flex-1 py-4">
         <div className="w-full">
           <Chat sessionId={sessionId} isUploading={isUploading} />
         </div>
-      </div> */}
+      </div>
       </main>
     </>
   );

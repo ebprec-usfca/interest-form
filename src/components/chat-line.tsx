@@ -56,7 +56,7 @@ export function ChatLine({
         <CardContent className="text-sm break-words">
           <Balancer>{formattedMessage}</Balancer>
         </CardContent>
-        <CardFooter>
+        {/* <CardFooter>
           <CardDescription className="w-full">
             {sources?.length ? (
               <Accordion type="single" collapsible className="w-full">
@@ -75,7 +75,7 @@ export function ChatLine({
               <></>
             )}
           </CardDescription>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </div>
   );

@@ -201,7 +201,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   <div className="mb-4 flex flex-col gap-4 sm:flex-row">
                     <div className="w-full sm:w-1/2">
                       <label htmlFor="firstName" className="mb-1 block text-lg">
-                        {isSpanish? "Nombre": "FULL NAME"}:
+                        {isSpanish? "Nombre": "Full Name"}:
                       </label>
                       <Field
                         type="text"
