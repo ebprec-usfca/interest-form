@@ -135,6 +135,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
             width={200}
             height={100}
           />
+          
           <div className='max-w-[200px] flex items-center justify-between'>
             <p className='font-bold text-primary'>English</p>
             <button className={`relative border-0 rounded-full cursor-pointer w-8 h-5 appearance-none ${isSpanish ? 'bg-green-500' : 'bg-red-500'}`} onClick={() => setIsSpanish(!isSpanish)}>
@@ -200,7 +201,7 @@ const WebForm: React.FC<WithResponseProps> = ({ setResponse }) => {
                   <div className="mb-4 flex flex-col gap-4 sm:flex-row">
                     <div className="w-full sm:w-1/2">
                       <label htmlFor="firstName" className="mb-1 block text-lg">
-                        {isSpanish? "Nombre": "First Name"}:
+                        {isSpanish? "Nombre": "FULL NAME"}:
                       </label>
                       <Field
                         type="text"

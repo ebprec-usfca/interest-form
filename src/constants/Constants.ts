@@ -43,8 +43,9 @@ export const referralSources: {[key in referralSource]: string} = {
   walked_in: 'Walked into 94th Ave Resource Center',
   H4S: 'My home/Property I live in is for sale',
   B2B: 'Bussiness Canvassing',
- }
- export const referralSourcesInSpanish: {[key in referralSource]: string} = {
+}
+
+export const referralSourcesInSpanish: {[key in referralSource]: string} = {
   doorstep: 'En la puerta de mi casa',
   event: 'En un evento',
   flyer: 'Folleto o póster',
@@ -54,7 +55,7 @@ export const referralSources: {[key in referralSource]: string} = {
   walked_in: 'Vine al Centro de Recursos en 94th Ave Resource Center',
   H4S: 'Mi casa o la propiedad en que vivo está en venta',
   B2B: 'Vinieron a visitar mi negocio',
- } 
+} 
 
 export type Interest = 
   'orientation'

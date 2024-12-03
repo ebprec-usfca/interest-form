@@ -12,10 +12,9 @@ export const env = createEnv({
     SHEETS_CLIENT_EMAIL: z.string(),
     EMAIL_PRIVATE_KEY: z.string(),
     OPENAI_API_KEY: z.string(),
-    REDIS_URL: z.string(),
-    REDIS_SECRET: z.string(),
+    PINECONE_API_KEY: z.string(),
+    PINECONE_INDEX_NAME: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
-    //SPREADSHEET_ID: z.string(),
   },
 
   /**
@@ -38,11 +37,9 @@ export const env = createEnv({
     SHEETS_CLIENT_EMAIL: process.env.SHEETS_CLIENT_EMAIL,
     EMAIL_PRIVATE_KEY: process.env.EMAIL_PRIVATE_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    REDIS_URL: process.env.REDIS_URL,
-    REDIS_SECRET: process.env.REDIS_SECRET,
-    //NEXT_PUBLIC_SPREADSHEET_ID: process.env.SPREADSHEET_ID,
+    PINECONE_API_KEY: process.env.PINECONE_API_KEY,
+    PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME,
     NODE_ENV: process.env.NODE_ENV,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

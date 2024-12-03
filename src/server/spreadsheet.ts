@@ -69,7 +69,6 @@ export default async function updateSpreadsheet(payload: FormPayload) {
       try {
         await sheets.spreadsheets.values.append({
           spreadsheetId: editSheetIDs[payload.referralSource],
-
           range: 'A1:AL1',
           insertDataOption: 'INSERT_ROWS',
           valueInputOption: 'USER_ENTERED',
@@ -83,6 +82,8 @@ export default async function updateSpreadsheet(payload: FormPayload) {
       } catch(err) {
         console.error('Spreadsheet update failed:', err);
       }
+    
+    
 }
 
 // get the row data from the payload
