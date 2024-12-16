@@ -25,11 +25,11 @@ export async function callChain({ question, chatHistory }: callChainArgs) {
 
     const chain = ConversationalRetrievalQAChain.fromLLM(
       streamingModel,
-      vectorStore.asRetriever(),
+      vectorStore.asRetriever({ k: 6 }),
       {
         qaTemplate: QA_TEMPLATE,
         questionGeneratorTemplate: STANDALONE_QUESTION_TEMPLATE,
-        returnSourceDocuments: true, //default 4
+        returnSourceDocuments: true,
         questionGeneratorChainOptions: {
           llm: nonStreamingModel,
         },
@@ -49,7 +49,7 @@ export async function callChain({ question, chatHistory }: callChainArgs) {
       .then(async (res) => {
         const sourceDocuments = res?.sourceDocuments;
         const firstTwoDocuments = sourceDocuments.slice(0, 2);
-        const pageContents = firstTwoDocuments.map(
+        const pageContents = sourceDocuments.map(
           ({ pageContent }: { pageContent: string }) => pageContent,
         );
         data.append({
