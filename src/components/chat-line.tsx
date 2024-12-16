@@ -53,8 +53,12 @@ export function ChatLine({
             {role === "assistant" ? "AI" : "You"}
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-sm break-words">
-          <Balancer>{formattedMessage}</Balancer>
+        <CardContent className="text-sm break-words [&_a]:underline">
+          <Balancer>
+            <ReactMarkdown linkTarget="_blank">
+            {content}
+            </ReactMarkdown>
+            </Balancer>
         </CardContent>
         {/* <CardFooter>
           <CardDescription className="w-full">
