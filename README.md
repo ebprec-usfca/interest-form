@@ -27,6 +27,9 @@ You should see the port that this is hosted on in the terminal output.
 > Note: your first time spinning up the development server will likely show errors parsing the environment
 variables. See [.env](#.env) section
 ## External Services
+## Gmail
+username: vercelauth@gmail.com
+password: aZfMAQ27ZSGIGPl
 ### Vercel
 Sign in to Vercel through the `Continue with Email` option. Vercel provides a name and a server for the web-app.
 
@@ -77,28 +80,7 @@ This is built on [Next.js](https://nextjs.org/) with React and TypeScript. Using
 * Formik & Yup (form validation)
 * Googleapis (sheets integration and authentication)
 * Nodemailer (primary email service)
-### Project Structure
-```
-/src
-├──/components
-│  ├── ErrorComponent.tsx
-│  ├── ThankYou.tsx
-│  └── WebForm.tsx
-├──/constants
-│  ├── Constants.ts
-│  └── Email.ts
-├── env.mjs
-├──/pages
-│  ├── _app.tsx
-│  ├──/api
-│  │  └── form.ts
-│  └── index.tsx
-├──/server
-│  ├── email.ts
-│  └── spreadsheet.ts
-└──/styles
-   └── globals.css
-```
+
 The source folder has the following main folders:
 * **components** - React Components
 * **constants** - Constant values from EBPREC
